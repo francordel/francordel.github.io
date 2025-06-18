@@ -1,2 +1,1 @@
-# francordel.com
-my personal website
+Fran Cortés portfolio astro

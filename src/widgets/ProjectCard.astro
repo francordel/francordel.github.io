@@ -1,0 +1,485 @@
+---
+const { project, language } = Astro.props;
+import Flutter from '../svg/tech/Flutter.astro';
+import Firebase from '../svg/tech/Firebase.astro';
+import Java from '../svg/tech/Java.astro';
+import NET from '../svg/tech/NET.astro';
+import React from '../svg/tech/React.astro';
+import Node from '../svg/tech/Node.astro';
+import HTML from '../svg/tech/HTML.astro';
+import Bootstrap from '../svg/tech/Bootstrap.astro';
+import CSS from '../svg/tech/CSS.astro';
+import Dart from '../svg/tech/Dart.astro';
+import CSharp from '../svg/tech/CSharp.astro';
+import C from '../svg/tech/C.astro';
+
+import WWW from '../svg/WWW.astro';
+import unity from '../svg/tech/unity.astro';
+const technologyComponents = {
+    'Dart': Dart,
+    'CSharp': CSharp,
+    'C': C,
+
+    'Flutter': Flutter,
+    'Firebase': Firebase,
+    'Java': Java,
+    'React': React,
+    'NET': NET,
+    'Node': Node,
+    'HTML': HTML,
+    'Bootstrap': Bootstrap,
+    'CSS': CSS,
+    'unity': unity,
+};
+---
+<div class="card-container project-card" style={{ backgroundImage: `url(${project.image})`, backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+    <div class="card">
+        <div class="front-content">
+            <p class="project-title" 
+               data-spanish-title={project.title.spanish}
+               data-english-title={project.title.english}>
+                {project.title[language]}
+            </p>
+        </div>
+        <div class="content">
+            <p class="heading project-heading" 
+               data-spanish-title={project.title.spanish}
+               data-english-title={project.title.english}>
+                {project.title[language]}
+            </p>
+            <p class="project-description" 
+               data-spanish-description={project.description.spanish}
+               data-english-description={project.description.english}>
+                {project.description[language]}
+            </p>
+            <div class="buttons-row">
+                {project.video && (
+                    <a href={project.video} class="project-button video-button" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 -7 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>Youtube-color</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Color-" transform="translate(-200.000000, -368.000000)" fill="#ffffff"> <path d="M219.044,391.269916 L219.0425,377.687742 L232.0115,384.502244 L219.044,391.269916 Z M247.52,375.334163 C247.52,375.334163 247.0505,372.003199 245.612,370.536366 C243.7865,368.610299 241.7405,368.601235 240.803,368.489448 C234.086,368 224.0105,368 224.0105,368 L223.9895,368 C223.9895,368 213.914,368 207.197,368.489448 C206.258,368.601235 204.2135,368.610299 202.3865,370.536366 C200.948,372.003199 200.48,375.334163 200.48,375.334163 C200.48,375.334163 200,379.246723 200,383.157773 L200,386.82561 C200,390.73817 200.48,394.64922 200.48,394.64922 C200.48,394.64922 200.948,397.980184 202.3865,399.447016 C204.2135,401.373084 206.612,401.312658 207.68,401.513574 C211.52,401.885191 224,402 224,402 C224,402 234.086,401.984894 240.803,401.495446 C241.7405,401.382148 243.7865,401.373084 245.612,399.447016 C247.0505,397.980184 247.52,394.64922 247.52,394.64922 C247.52,394.64922 248,390.73817 248,386.82561 L248,383.157773 C248,379.246723 247.52,375.334163 247.52,375.334163 L247.52,375.334163 Z" id="Youtube"> </path> </g> </g> </g></svg>
+                    </a>
+                )}
+                {project.github && (
+                    <a href={project.github} class="project-button github-button" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>github [#ffffff]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-140.000000, -7559.000000)" fill="#ffffff"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M94,7399 C99.523,7399 104,7403.59 104,7409.253 C104,7413.782 101.138,7417.624 97.167,7418.981 C96.66,7419.082 96.48,7418.762 96.48,7418.489 C96.48,7418.151 96.492,7417.047 96.492,7415.675 C96.492,7414.719 96.172,7414.095 95.813,7413.777 C98.04,7413.523 100.38,7412.656 100.38,7408.718 C100.38,7407.598 99.992,7406.684 99.35,7405.966 C99.454,7405.707 99.797,7404.664 99.252,7403.252 C99.252,7403.252 98.414,7402.977 96.505,7404.303 C95.706,7404.076 94.85,7403.962 94,7403.958 C93.15,7403.962 92.295,7404.076 91.497,7404.303 C89.586,7402.977 88.746,7403.252 88.746,7403.252 C88.203,7404.664 88.546,7405.707 88.649,7405.966 C88.01,7406.684 87.619,7407.598 87.619,7408.718 C87.619,7412.646 89.954,7413.526 92.175,7413.785 C91.889,7414.041 91.63,7414.493 91.54,7415.156 C90.97,7415.418 89.522,7415.871 88.63,7414.304 C88.63,7414.304 88.101,7413.319 87.097,7413.247 C87.097,7413.247 86.122,7413.234 87.029,7413.87 C87.029,7413.87 87.684,7414.185 88.139,7415.37 C88.139,7415.37 88.726,7417.2 91.508,7416.58 C91.513,7417.437 91.522,7418.245 91.522,7418.489 C91.522,7418.76 91.338,7419.077 90.839,7418.982 C86.865,7417.627 84,7413.783 84,7409.253 C84,7403.59 88.478,7399 94,7399" id="github-[#ffffff]"> </path> </g> </g> </g> </g></svg>
+                    </a>
+                )}
+                {project.github2 && (
+                    <a href={project.github2} class="project-button github2-button" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>github [#ffffff]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-140.000000, -7559.000000)" fill="#ffffff"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M94,7399 C99.523,7399 104,7403.59 104,7409.253 C104,7413.782 101.138,7417.624 97.167,7418.981 C96.66,7419.082 96.48,7418.762 96.48,7418.489 C96.48,7418.151 96.492,7417.047 96.492,7415.675 C96.492,7414.719 96.172,7414.095 95.813,7413.777 C98.04,7413.523 100.38,7412.656 100.38,7408.718 C100.38,7407.598 99.992,7406.684 99.35,7405.966 C99.454,7405.707 99.797,7404.664 99.252,7403.252 C99.252,7403.252 98.414,7402.977 96.505,7404.303 C95.706,7404.076 94.85,7403.962 94,7403.958 C93.15,7403.962 92.295,7404.076 91.497,7404.303 C89.586,7402.977 88.746,7403.252 88.746,7403.252 C88.203,7404.664 88.546,7405.707 88.649,7405.966 C88.01,7406.684 87.619,7407.598 87.619,7408.718 C87.619,7412.646 89.954,7413.526 92.175,7413.785 C91.889,7414.041 91.63,7414.493 91.54,7415.156 C90.97,7415.418 89.522,7415.871 88.63,7414.304 C88.63,7414.304 88.101,7413.319 87.097,7413.247 C87.097,7413.247 86.122,7413.234 87.029,7413.87 C87.029,7413.87 87.684,7414.185 88.139,7415.37 C88.139,7415.37 88.726,7417.2 91.508,7416.58 C91.513,7417.437 91.522,7418.245 91.522,7418.489 C91.522,7418.76 91.338,7419.077 90.839,7418.982 C86.865,7417.627 84,7413.783 84,7409.253 C84,7403.59 88.478,7399 94,7399" id="github-[#ffffff]"> </path> </g> </g> </g> </g></svg>
+                    </a>
+                )}
+                {project.playStore && (
+                    <a href={project.playStore} class="project-button playstore-button" target="_blank" rel="noopener noreferrer">
+                        <svg with="40" height="40" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g>
+                                <g>
+                                    <path style="fill:#3A9BC8;" d="M225.656,256.052L14.016,485.451l-6.442,7.052c-4.005-5.919-6.704-12.972-7.313-20.806 C0.087,470.305,0,468.91,0,467.518V44.499c0-9.488,2.873-18.02,7.574-24.987L225.656,256.052z"></path>
+                                    <path style="fill:#9BCD83;" d="M320.811,152.8l-95.155,103.253L7.574,19.512C19.936,1.405,45.183-6.342,66.6,6.02L320.811,152.8z"></path>
+                                    <path style="fill:#EEB84C;" d="M455.056,257.27c-0.348,14.453-7.748,28.904-22.113,37.174l-112.132,64.771l-95.155-103.163 L320.811,152.8l70.518,40.745l41.614,24.026C448.178,226.366,455.579,241.861,455.056,257.27z"></path>
+                                    <path style="fill:#B43F70;" d="M7.591,492.492c12.368,18.116,37.599,25.838,58.976,13.496L320.775,359.22l-95.156-103.209 L7.591,492.492z"></path>
+                                </g>
+                                <path style="opacity:0.2;fill:#FFFFFF;" d="M454.067,246.447c-2.453-11.518-9.483-22.156-21.124-28.876l-41.614-24.026 L320.811,152.8L66.6,6.02C45.183-6.342,19.936,1.405,7.574,19.512C2.873,26.479,0,35.011,0,44.499v243.72 c36.681,3.114,74.226,4.746,112.451,4.746c47.984,0,94.85-2.644,140.318-7.505l-27.027-29.314l27.038,29.314 C323.988,277.849,391.567,264.55,454.067,246.447z"></path>
+                            </g>
+                        </svg>
+                    </a>
+                )}
+                {project.www && (
+                    <a href={project.www} class="project-button www-button" target="_blank" rel="noopener noreferrer">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                viewBox="0 0 392.533 392.533" xml:space="preserve">
+                            <path style="fill:#FFC10D;" d="M359.822,147.329H32.711c-6.012,0-10.925,4.848-10.925,10.925v75.96
+                                c0,6.012,4.848,10.925,10.925,10.925h327.111c6.012,0,10.925-4.848,10.925-10.925v-75.96
+                                C370.747,152.242,365.834,147.329,359.822,147.329z"/>
+                            <g>
+                                <path style="fill:#FFFFFF;" d="M104.404,125.543c2.521-13.446,5.689-26.117,9.438-37.818c-15.903-2.004-31.806-4.59-47.774-7.628
+                                    c-11.895,13.382-21.786,28.574-29.285,45.446H104.404z"/>
+                                <path style="fill:#FFFFFF;" d="M185.341,92.768c-16.485-0.259-32.84-1.164-49.196-2.651c-3.685,10.796-6.982,22.691-9.503,35.362
+                                    h58.828V92.703h-0.129V92.768z"/>
+                                <path style="fill:#FFFFFF;" d="M85.463,61.608c12.024,2.069,24.113,3.814,36.267,5.172c6.206-14.287,13.317-26.57,21.269-36.655
+                                    C121.859,36.913,102.4,47.644,85.463,61.608z"/>
+                                <path style="fill:#FFFFFF;" d="M185.341,23.79c-15.127,5.301-29.349,21.463-40.663,45.253c13.511,1.099,27.022,1.681,40.663,1.939
+                                    V23.79z"/>
+                                <path style="fill:#FFFFFF;" d="M278.691,87.79c3.814,11.636,6.853,24.242,9.438,37.818h67.62
+                                    c-7.499-16.873-17.39-32.065-29.285-45.446C310.562,83.265,294.659,85.851,278.691,87.79z"/>
+                                <path style="fill:#FFFFFF;" d="M307.071,61.608c-16.937-13.899-36.396-24.63-57.471-31.354
+                                    c7.952,10.02,15.063,22.303,21.269,36.655C282.958,65.358,295.046,63.677,307.071,61.608z"/>
+                                <path style="fill:#FFFFFF;" d="M256.388,90.182c-16.356,1.487-32.84,2.392-49.196,2.651v32.776h58.828
+                                    C263.434,112.873,260.202,100.978,256.388,90.182z"/>
+                                <path style="fill:#FFFFFF;" d="M207.192,70.982c13.511-0.259,27.152-0.84,40.663-1.939c-11.313-23.725-25.471-39.952-40.663-45.253
+                                    V70.982z"/>
+                                <path style="fill:#FFFFFF;" d="M288.129,266.99c-2.521,13.447-5.689,26.117-9.438,37.818c15.903,2.004,31.806,4.59,47.774,7.628
+                                    c11.895-13.382,21.786-28.574,29.285-45.446L288.129,266.99L288.129,266.99z"/>
+                                <path style="fill:#FFFFFF;" d="M207.192,368.743c15.127-5.301,29.349-21.463,40.663-45.253
+                                    c-13.511-1.099-27.022-1.681-40.663-1.939V368.743z"/>
+                                <path style="fill:#FFFFFF;" d="M207.192,299.766c16.485,0.259,32.84,1.164,49.196,2.65c3.685-10.796,6.982-22.691,9.503-35.362
+                                    h-58.828v32.776h0.129V299.766z"/>
+                                <path style="fill:#FFFFFF;" d="M307.071,330.925c-12.024-2.069-24.113-3.814-36.267-5.172
+                                    c-6.206,14.287-13.317,26.57-21.269,36.655C270.675,355.62,290.133,344.889,307.071,330.925z"/>
+                                <path style="fill:#FFFFFF;" d="M185.341,321.552c-13.511,0.259-27.152,0.84-40.663,1.939
+                                    c11.313,23.725,25.471,39.952,40.663,45.253V321.552z"/>
+                                <path style="fill:#FFFFFF;" d="M36.848,266.99c7.499,16.873,17.39,32.065,29.285,45.447c15.838-3.103,31.741-5.689,47.774-7.628
+                                    c-3.814-11.636-6.853-24.242-9.438-37.689h-67.62V266.99z"/>
+                                <path style="fill:#FFFFFF;" d="M136.145,302.352c16.356-1.487,32.84-2.392,49.196-2.65v-32.776h-58.828
+                                    C129.099,279.661,132.331,291.556,136.145,302.352z"/>
+                                <path style="fill:#FFFFFF;" d="M121.729,325.754c-12.024,1.422-24.178,3.103-36.267,5.172
+                                    c16.937,13.899,36.396,24.63,57.471,31.354C134.982,352.388,127.806,340.04,121.729,325.754z"/>
+                            </g>
+                            <g>
+                                <path style="fill:#194F82;" d="M383.03,135.305C355.62,53.204,279.855,0,196.267,0C112.42,0,37.236,53.139,9.826,134.917
+                                    C3.814,140.865,0,149.139,0,158.255v75.96c0,8.792,3.556,16.873,9.244,22.82c29.608,82.812,103.046,135.499,187.022,135.499
+                                    c83.846,0,159.741-53.85,186.44-134.917c6.012-5.947,9.826-14.222,9.826-23.337v-75.96
+                                    C392.533,149.269,388.913,141.188,383.03,135.305z M355.685,125.543h-67.62c-2.521-13.446-5.689-26.117-9.438-37.818
+                                    c15.903-2.004,31.806-4.59,47.774-7.628C338.295,93.479,348.25,108.735,355.685,125.543z M307.071,61.608
+                                    c-12.024,2.069-24.113,3.814-36.267,5.172c-6.077-14.287-13.317-26.57-21.269-36.655C270.675,36.913,290.133,47.644,307.071,61.608
+                                    z M207.192,23.79c15.127,5.301,29.349,21.463,40.663,45.253c-13.511,1.099-27.152,1.681-40.663,1.939V23.79z M207.063,92.768h0.065
+                                    c16.485-0.259,32.84-1.164,49.196-2.651c3.685,10.796,6.982,22.691,9.503,35.362h-58.828V92.768H207.063z M185.341,23.79v47.192
+                                    c-13.511-0.259-27.152-0.84-40.663-1.939C155.992,45.253,170.214,29.156,185.341,23.79z M185.277,92.768v32.776h-58.699
+                                    c2.521-12.671,5.818-24.566,9.503-35.362C152.436,91.669,168.921,92.574,185.277,92.768z M142.933,30.125
+                                    c-7.952,10.02-15.063,22.303-21.269,36.655c-12.024-1.422-24.178-3.103-36.267-5.172C102.4,47.644,121.859,36.913,142.933,30.125z
+                                    M66.133,80.097c15.838,3.103,31.741,5.689,47.774,7.628c-3.814,11.636-6.853,24.242-9.438,37.818h-67.62
+                                    C44.283,108.735,54.238,93.479,66.133,80.097z M36.848,266.99h67.62c2.521,13.447,5.689,26.117,9.438,37.689
+                                    c-15.903,2.004-31.806,4.59-47.774,7.628C54.238,299.055,44.283,283.798,36.848,266.99z M85.463,330.925
+                                    c12.024-2.069,24.113-3.814,36.267-5.172c6.206,14.287,13.317,26.57,21.269,36.655C121.859,355.62,102.4,344.889,85.463,330.925z
+                                    M185.341,368.743c-15.127-5.301-29.349-21.463-40.663-45.253c13.511-1.099,27.152-1.681,40.663-1.939V368.743z M185.471,299.766
+                                    h-0.065c-16.485,0.259-32.84,1.164-49.196,2.65c-3.685-10.796-6.982-22.691-9.503-35.362h58.828v32.711H185.471z M207.192,368.743
+                                    v-47.192c13.511,0.259,27.152,0.84,40.663,1.939C236.541,347.281,222.319,363.378,207.192,368.743z M207.257,299.766V266.99h58.699
+                                    c-2.521,12.671-5.818,24.566-9.503,35.362C240.097,300.865,223.612,299.96,207.257,299.766z M249.6,362.408
+                                    c7.952-10.02,15.063-22.303,21.269-36.655c12.024,1.422,24.178,3.103,36.267,5.172C290.133,344.889,270.675,355.62,249.6,362.408z
+                                    M326.4,312.436c-15.838-3.103-31.741-5.689-47.774-7.628c3.814-11.636,6.853-24.242,9.438-37.818h67.62
+                                    C348.25,283.798,338.295,299.055,326.4,312.436z M359.822,245.204H32.711c-6.012,0-10.925-4.848-10.925-10.925v-75.96
+                                    c0-6.012,4.848-10.925,10.925-10.925h327.111c6.012,0,10.925,4.848,10.925,10.925v75.96h0.065
+                                    C370.747,240.291,365.899,245.204,359.822,245.204z"/>
+                                <polygon style="fill:#194F82;" points="120.76,202.085 109.899,168.21 94.836,168.21 83.911,202.085 72.986,168.21 56.889,168.21 
+                                    75.895,224.259 92.057,224.259 102.4,193.745 112.679,224.259 128.905,224.259 147.911,168.21 131.685,168.21 	"/>
+                                <polygon style="fill:#194F82;" points="214.562,202.15 203.701,168.275 188.638,168.275 177.713,202.15 166.853,168.275 
+                                    150.691,168.275 169.697,224.259 185.859,224.259 196.267,193.81 206.481,224.323 222.707,224.323 241.713,168.275 
+                                    225.487,168.275 	"/>
+                                <polygon style="fill:#194F82;" points="308.493,202.085 297.568,168.21 282.505,168.21 271.58,202.085 260.719,168.21 
+                                    244.558,168.21 263.564,224.259 279.725,224.259 290.069,193.745 300.347,224.259 316.574,224.259 335.58,168.21 319.354,168.21 	
+                                    "/>
+                            </g>
+                            <g>
+                                <path style="fill:#56ACE0;" d="M270.675,326.141c0.129-0.065,0.323-0.259,0.453-0.323c-0.065,0-0.259,0-0.323,0
+                                    C270.739,325.947,270.739,326.012,270.675,326.141z"/>
+                                <path style="fill:#56ACE0;" d="M121.406,325.754c0.129,0.065,0.323,0.259,0.453,0.323c-0.065-0.129-0.065-0.259-0.129-0.388
+                                    C121.6,325.754,121.471,325.754,121.406,325.754z"/>
+                                <path style="fill:#56ACE0;" d="M271.127,66.78c-0.129-0.065-0.323-0.259-0.453-0.323c0.065,0.129,0.065,0.259,0.129,0.388
+                                    C270.933,66.78,271.063,66.78,271.127,66.78z"/>
+                                <path style="fill:#56ACE0;" d="M121.859,66.392c-0.129,0.065-0.323,0.259-0.453,0.323c0.065,0,0.259,0,0.323,0
+                                    C121.794,66.586,121.794,66.521,121.859,66.392z"/>
+                                <path style="fill:#56ACE0;" d="M70.723,266.99c7.24,14.933,16.743,28.38,28.057,39.887c5.042-0.776,10.02-1.552,15.127-2.133
+                                    c-3.814-11.636-6.853-24.242-9.438-37.689H70.723V266.99z"/>
+                                <path style="fill:#56ACE0;" d="M70.723,266.99L70.723,266.99L70.723,266.99z"/>
+                                <path style="fill:#56ACE0;" d="M185.277,266.99h-58.699c2.521,12.671,5.818,24.566,9.503,35.362
+                                    c16.356-1.487,32.84-2.392,49.196-2.65V266.99z"/>
+                                <path style="fill:#56ACE0;" d="M288.129,267.055v-0.065c-2.521,13.447-5.689,26.117-9.438,37.818
+                                    c5.042,0.646,10.02,1.422,15.127,2.133c11.313-11.507,20.816-24.954,28.057-39.887H288.129z"/>
+                                <path style="fill:#56ACE0;" d="M144.743,69.107c13.511,1.099,27.152,1.681,40.663,1.939V44.154
+                                    c-10.279,0.84-20.234,2.844-29.802,5.947C151.725,55.725,148.04,61.996,144.743,69.107z"/>
+                                <path style="fill:#56ACE0;" d="M207.192,348.444c10.279-0.84,20.234-2.844,29.802-5.947c3.814-5.624,7.499-11.895,10.796-19.006
+                                    c-13.511-1.099-27.152-1.681-40.663-1.939v26.893H207.192z"/>
+                                <path style="fill:#56ACE0;" d="M207.192,299.766c16.485,0.259,32.84,1.164,49.196,2.65c3.814-10.796,6.982-22.691,9.568-35.362
+                                    h-58.828v32.711H207.192z"/>
+                                <path style="fill:#56ACE0;" d="M207.257,92.768v32.776h58.699c-2.521-12.671-5.818-24.566-9.503-35.362
+                                    C240.097,91.669,223.612,92.574,207.257,92.768z"/>
+                                <path style="fill:#56ACE0;" d="M236.994,50.036c-9.568-3.103-19.523-5.107-29.802-5.947v26.893
+                                    c13.511-0.259,27.152-0.84,40.663-1.939C244.493,62.061,240.808,55.725,236.994,50.036z"/>
+                                <path style="fill:#56ACE0;" d="M155.539,342.497c9.568,3.103,19.523,5.107,29.802,5.947v-26.893
+                                    c-13.576,0.259-27.152,0.84-40.663,1.939C148.04,330.473,151.79,336.808,155.539,342.497z"/>
+                                <path style="fill:#56ACE0;" d="M321.81,125.608v-0.065c-7.24-14.933-16.743-28.38-28.057-39.887
+                                    c-5.042,0.776-10.02,1.552-15.127,2.133c3.814,11.636,6.853,24.242,9.438,37.818H321.81z"/>
+                                <path style="fill:#56ACE0;" d="M104.404,125.543c2.521-13.446,5.689-26.117,9.438-37.818c-5.042-0.646-10.02-1.422-15.127-2.133
+                                    c-11.313,11.507-20.816,24.954-28.057,39.887h33.745C104.404,125.479,104.404,125.543,104.404,125.543z"/>
+                                <path style="fill:#56ACE0;" d="M126.578,125.543h58.828V92.768c-16.485-0.259-32.84-1.164-49.196-2.651
+                                    C132.331,100.978,129.099,112.873,126.578,125.543z"/>
+                            </g>
+                            </svg>
+                    </a>
+                )}
+            </div>
+        </div>
+    </div>
+    <div class="buttons-sidebar">
+        {project.technologies.map((tech, index, array) => {
+            const TechComponent = technologyComponents[tech];
+            return <TechComponent />; 
+        })}
+    </div>
+</div>
+
+<style>
+
+    .card-container:nth-of-type(2n) {
+        justify-content: flex-end; 
+    }
+
+    .card-container:nth-of-type(2n) {
+        margin-top: 10rem; 
+    }
+
+    .card-container {
+        display: flex;
+        justify-content: flex-start; 
+        width: 45%;
+        height: 280px;
+        position: relative;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 1px #000000ee;
+        overflow: hidden;
+    }
+
+    .card-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.5); 
+        z-index: 1;
+    }
+
+    .card .front-content, .card .content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .card {
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+    }
+
+    .card .front-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .card .front-content p {
+        font-size: 32px;
+        font-weight: 800;
+        opacity: 1;
+        color: var(--blue-titles-color);
+        background-clip: text;
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        text-shadow: 
+        -1px -1px 0 #09276d,  
+        1px -1px 0 #09276d,   
+        -1px 1px 0 #09276d,  
+        1px 1px 0 #09276d; 
+    }
+
+    .card .content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 10px;
+        background: linear-gradient(90deg, var(--project-card-color1) 50%, var(--project-card-color2) 100%);
+        color: var(--text-color);
+        padding: 60px;
+        padding-right: 120px;
+        font-size: 13px;
+        line-height: 1.5;
+        border-radius: 5px;
+        transform: translateX(-96%);
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .card .content .heading {
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    .card-container:hover .content {
+        transform: translateY(0);
+    }
+
+    .card-container:nth-of-type(2n+1):hover .front-content {
+        transform: translateX(-30%);
+    }
+
+    .card-container:nth-of-type(2n):hover .front-content {
+        transform: translateX(30%);
+    }
+
+    .card:hover .front-content p {
+        opacity: 0;
+    }
+
+    .card-container:nth-of-type(2n) .content {
+        background: linear-gradient(-90deg, var(--project-card-color1) 50%, var(--project-card-color2) 100%);
+        transform: translateX(96%);
+        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        padding-left: 120px;
+    }
+
+    .card-container:nth-of-type(2n):hover .content {
+        transform: translateX(0%);
+    }
+
+    .project-button {
+        display: inline-block;
+        margin: 10px;
+        padding: 10px 10px;
+        font-size: 16px;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+        pointer-events: all; 
+    }
+
+    .project-button svg {
+        fill: #ffffff; 
+        width: 50px; 
+        height: 50px; 
+    }
+
+    .video-button {
+        background-color: #FF0000; 
+    }
+
+    .video-button:hover {
+        background-color: #CC0000; 
+    }
+
+    .github-button {
+        background-color: #333; 
+    }
+
+    .github-button:hover {
+        background-color: #2a2a2a; 
+    }
+
+    .github2-button {
+        background-color: #8c8c8c; 
+    }
+
+    .github2-button:hover {
+        background-color: #757575; 
+    }
+
+    
+
+    .playstore-button:hover {
+        background-color: #dadada;
+    }
+
+    
+
+    .www-button:hover {
+        background-color: #1a1a1a;
+    }
+
+    .buttons-sidebar {
+        padding: 10px 10px;
+        position: absolute;
+        top: 0;
+        right: 0; 
+        width: 60px; 
+        height: 100%;
+        background-color: var(--buttons-sidebar-color); 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        pointer-events: all;
+        z-index: 1; 
+    }
+
+    .card-container:nth-of-type(2n) .buttons-sidebar {
+        left: 0;
+    }
+
+    @media (max-width: 768px) {
+    .card-container {
+        width: 100%;
+        margin-bottom: 5rem;
+    }
+
+    .card .content {
+        padding: 10px; 
+        font-size: 14px;
+    }
+
+    .card .content .heading {
+        font-size: 24px;
+    }
+
+    .card-container:nth-of-type(2n) .content, .card-container:not(:nth-of-type(2n)) .content {
+        transition: transform 0.6s ease-out;
+    }
+
+    .card-container:nth-of-type(2n) .content {
+        padding-left: 30px;
+    }
+
+    .project-button svg {
+        fill: #ffffff; 
+        width: 20px; 
+        height: 20px; 
+    }
+
+    .card-container:nth-of-type(2n) {
+        margin-top: 0rem; 
+    }
+
+}
+</style>
+
+<script>
+    // Actualizar cuando cambia el idioma
+    document.addEventListener('languageChanged', (event) => {
+        if (event instanceof CustomEvent && event.detail && event.detail.language) {
+            updateProjectCards(event.detail.language);
+        }
+    });
+
+    // Inicializar con el idioma actual
+    document.addEventListener('DOMContentLoaded', () => {
+        const currentLanguage = localStorage.getItem('language') || 'spanish';
+        updateProjectCards(currentLanguage);
+    });
+
+    // Función para actualizar las tarjetas de proyectos
+    function updateProjectCards(language) {
+        // Actualizar títulos de proyectos
+        document.querySelectorAll('.project-title, .project-heading').forEach(element => {
+            const spanishTitle = element.getAttribute('data-spanish-title');
+            const englishTitle = element.getAttribute('data-english-title');
+            
+            if (language === 'spanish' && spanishTitle) {
+                element.textContent = spanishTitle;
+            } else if (language === 'english' && englishTitle) {
+                element.textContent = englishTitle;
+            }
+        });
+        
+        // Actualizar descripciones de proyectos
+        document.querySelectorAll('.project-description').forEach(element => {
+            const spanishDesc = element.getAttribute('data-spanish-description');
+            const englishDesc = element.getAttribute('data-english-description');
+            
+            if (language === 'spanish' && spanishDesc) {
+                element.textContent = spanishDesc;
+            } else if (language === 'english' && englishDesc) {
+                element.textContent = englishDesc;
+            }
+        });
+    }
+</script>

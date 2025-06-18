@@ -1,0 +1,303 @@
+---
+import LinkedIn from '../svg/LinkedIn.astro';
+import GitHub from '../svg/GitHub.astro';
+import CV from '../svg/CV.astro';
+import IBM from '../svg/IBM.astro';
+import Vodafone from '../svg/Vodafone.astro';
+import UMU from '../svg/UMU.astro';
+
+import UMU_Small from '../svg/UMU_Small.astro';
+import Vodafone_Small from '../svg/Vodafone_Small.astro';
+import IBM_Small from '../svg/IBM_Small.astro';
+import LinkedIn_Small from '../svg/LinkedIn_Small.astro';
+import GitHub_Small from '../svg/GitHub_Small.astro';
+import CV_Small from '../svg/CV_Small.astro';
+
+const { currentLanguage } = Astro.props;
+const name = "Fran Cortés";
+---
+
+<section class="intro-mask-section" id="intro">
+  <div class="container">
+    <img src="/assets/me/yo_london.jpg" alt="Imagen estática" />
+    <div class="mask">
+      <h1 class="nombre">FRAN<br />CORTÉS<br />DELGADO</h1>
+    </div>
+
+    <div class="landing-info">
+      <h2>{name}</h2>
+      <h3 id="title" data-i18n="title">
+        {currentLanguage === 'spanish'
+          ? 'Investigador IA | Ingeniero Informático'
+          : 'AI Researcher | Computer Engineer'}
+      </h3>
+      <p id="tagline" data-i18n="tagline">
+        {currentLanguage === 'spanish'
+          ? 'Agentes LLMs para Ciberseguridad y Desarrollo End to End'
+          : 'LLM Agents for Cybersecurity and End-to-End Development'}
+      </p>
+
+      <!-- enlaces -->
+      <div class="row">
+        <a href="https://www.linkedin.com/in/francisco-jose-cortes-delgado/" target="_blank">
+          <div class="icon-text">
+            <span class="icon-lg"><LinkedIn /></span>
+            <span class="icon-sm"><LinkedIn_Small /></span>
+            <span>LinkedIn</span>
+          </div>
+        </a>
+        <a href="https://github.com/francordel" target="_blank">
+          <div class="icon-text">
+            <span class="icon-lg"><GitHub /></span>
+            <span class="icon-sm"><GitHub_Small /></span>
+            <span>GitHub</span>
+          </div>
+        </a>
+        <a href="/CV_FranCortes.pdf" target="_blank" rel="noopener noreferrer">
+          <div class="icon-text">
+            <span class="icon-lg"><CV /></span>
+            <span class="icon-sm"><CV_Small /></span>
+            <span data-i18n="cv-text">
+              {currentLanguage === 'spanish' ? 'Currículum' : 'Resume'}
+            </span>
+          </div>
+        </a>
+        
+      </div>
+    </div>
+    <div> 
+      <!-- Espacio para el contenido adicional -->
+      <div class="landing-experience">
+        <div class="row_experience">
+            <a href="https://research.ibm.com" target="_blank">
+              <div class="icon-text">
+                <span class="icon-lg"><IBM /></span>
+                <span class="icon-sm"><IBM_Small /></span>
+              </div>
+            </a>
+            <a href="https://www.vodafone.es/c/empresas/grandes-clientes/es/ecosistema-de-innovacion/hub-malaga/" target="_blank">
+              <div class="icon-text">
+                <span class="icon-lg"><Vodafone /></span>
+                <span class="icon-sm"><Vodafone_Small /></span>
+              </div>
+            </a>
+            <a href="https://www.um.es/web/informatica/" target="_blank">
+              <div class="icon-text">
+                <span class="icon-lg"><UMU /></span>
+                <span class="icon-sm"><UMU_Small /></span>
+              </div>
+            </a>
+        </div>
+      </div>
+
+  </div>
+
+  <script type="module">
+    import gsap from "https://cdn.skypack.dev/gsap";
+    import ScrollTrigger from "https://cdn.skypack.dev/gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".container",
+        start: "top top",
+        end: "+=250",
+        scrub: true,
+        pin: true,
+        pinSpacing: false
+        // markers: true
+      }
+    });
+
+    tl.to(".nombre",      { scale: 250, ease: "none" })
+      .to(".landing-info",{ opacity: 10 }, 0)
+      .to(".landing-experience",{ opacity: 10 }, 0);
+  </script>
+</section>
+
+<style>
+/* contenedor principal */
+.container {
+  height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow: visible;
+  position: relative;
+}
+
+/* efecto de máscara de texto */
+.mask {
+  height: 100%;
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  mix-blend-mode: screen;
+  position: relative;
+  z-index: 2;
+}
+
+/* nombre en grande */
+h1 {
+  font-size: 12vw;
+  font-weight: 900;
+  line-height: 1;
+  color: #000;
+  text-align: center;
+  margin: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+/* foto de fondo */
+img {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* bloque info que aparece tras la animación */
+.landing-info {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1;
+  opacity: 0;
+  color: var(--text-color);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  background: var(--blue-card-color-semitransparent);
+  border-radius: 2rem;
+  padding: 2rem 3.5rem;
+  box-shadow: 0 4px 24px rgb(112, 89, 188);
+  max-width: 70vw;
+}
+.landing-experience {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1;
+  opacity: 0;
+  color: var(--text-color);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  background: var(--transparent-color);
+  border-radius: 2rem;
+  padding: 0;
+  max-width: 70vw;
+}
+.landing-info h2 { font-size: 2.5rem; margin: 0.5rem 0; }
+.landing-info h3 { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--blue-card-career-color); }
+.landing-info p  {
+  font-size: 1.1rem;
+  color: var(--text-color-p); /* Cambiado de #ddd a var(--text-color) */
+  max-width: 95vw;
+  margin: 0 auto;
+}
+
+/* === NUEVO: fila de iconos ===== */
+.row, .row_experience {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.mask,
+.nombre {
+  pointer-events: none;
+}
+.icon-text {
+  display: flex;
+  align-items: center;
+}
+/* por defecto: sólo se ve el grande */
+.icon-sm { display: none; }
+.icon-lg { display: inline; }
+
+
+.icon-text svg {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-text span {
+  margin-left: 8px;
+  font-size: 0.95rem;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+
+.row a, .row_experience a { transition: transform 0.3s ease; }
+.row a:hover, .row_experience a:hover       { transform: scale(1.05); }
+.row a:hover span, .row_experience a:hover span  { opacity: 1; }
+
+/* ================================ */
+
+/* breakpoints */
+@media (max-width: 1024px) {
+  h1 { font-size: 10vw; }
+  .landing-info      { top: 70%; padding: 1rem 2rem; max-width: 85vw; }
+  .landing-info h2   { font-size: 2rem; }
+  .landing-info h3   { font-size: 1.2rem; }
+  .landing-info p    { font-size: 1rem; }
+  .landing-experience      { top: 85%;  width: 95vw; max-width: none; }
+
+  .icon-lg { display: none; }
+  .icon-sm { display: inline; }
+  .row .icon-text svg  { width: 1rem; height: 1rem; }
+  .icon-text span { font-size: 0.5rem; }
+}
+@media (max-width: 868px) {
+  h1 { font-size: 9vw; }
+  .landing-info      { top: 70%; padding: 1.2rem 1.8rem; max-width: 95vw; border-radius: 1.5rem; }
+  .landing-info h2   { font-size: 1.7rem; }
+  .landing-info h3   { font-size: 1rem; }
+  .landing-info p    { font-size: 0.95rem; }
+  .icon-text span    { font-size: 0.85rem; }
+  .row {
+    flex-wrap: nowrap;   /* ⬅️  NO se rompa la fila */
+    gap: 1.5rem;         /*   un poco menos de espacio */
+    justify-content: center;
+  }
+  .landing-experience      { top: 85%;  width: 95vw; max-width: none; }
+
+  .icon-lg { display: none; }
+  .icon-sm { display: inline; }
+  .row .icon-text svg  { width: 1rem; height: 1rem; }
+  .icon-text span { font-size: 0.5rem; }
+}
+@media (max-width: 480px) {
+  h1 { font-size: 8.5vw; }
+  .landing-info      { top: 65%; padding: 1rem 1rem; width: 95vw; max-width: none; }
+  .landing-info h2   { font-size: 0.9rem; }
+  .landing-info h3   { font-size: 0.9rem; }
+  .landing-info p    { font-size: 0.5rem; }
+  .row {
+    flex-wrap: nowrap;   /* ⬅️  siempre en línea */
+    gap: 0.1rem;           /*   aún menos separación */
+    overflow-x: auto;    /*   si no cabe, permite scroll lateral */
+    -webkit-overflow-scrolling: touch; /* scrolling suave iOS */
+  }
+  .landing-experience      { top: 80%;  width: 95vw; max-width: none; }
+
+  .row-experience {
+    overflow-x: auto;    /*   si no cabe, permite scroll lateral */
+  }
+  .icon-lg { display: none; }
+  .icon-sm { display: inline; }
+  .row .icon-text svg  { width: 1rem; height: 1rem; }
+  .icon-text span { font-size: 0.5rem; }
+}
+</style>

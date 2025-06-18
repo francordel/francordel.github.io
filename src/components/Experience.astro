@@ -1,0 +1,124 @@
+---
+const jobs = [
+    {
+        title: {
+            spanish: "Investigador en IA aplicada a la Ciberseguridad",
+            english: "AI Cybersecurity Researcher"
+        },
+        company: {
+            spanish: "IBM Research",
+            english: "IBM Research"
+        },
+        description: {
+            spanish: "Desarrollo de un framework para red teaming de LLMs, automatizándolo con un agente LLM que, usando MCP, selecciona la mejor técnica. En colaboración con la Universidad de Murcia.",
+            english: "Development of a framework for LLM red teaming, automating it with an LLM agent that uses MCP to select the best technique. In collaboration with the University of Murcia."
+        },
+        period: {
+            spanish: "📍 Dublin: Mayo 2025 - Agosto 2025",
+            english: "📍 Dublin: May 2025 - August 2025"
+        },
+        color: "#54b948",
+        technologies: ["Python", "HuggingFace", "Git_Icon", "MCP","Harmbench"]
+    },
+    {
+        title: {
+            spanish: "Ingeniero de Software Back End",
+            english: "Back End Engineer"
+        },
+        company: {
+            spanish: "Vodafone Innovation",
+            english: "Vodafone Innovation"
+        },
+        description: {
+            spanish: "Desarrollo de microservicios usando Java Spring Boot, Kafka, MongoDB, Cucumber, JUnit, Docker y Kubernetes, CI/CD en Gitlab, despliegue en AWS con Terraform, monitorizacion con ElasticSearch y Kibana; metodologias ágiles como SAFe.",
+            english: "Development of microservices using Java Spring Boot, Kafka, MongoDB, Cucumber, JUnit, Docker and Kubernetes, CI/CD in Gitlab, deployment in AWS with Terraform, monitoring with ElasticSearch and Kibana; agile methodologies like SAFe."
+        },
+        period: {
+            spanish: "📍 Málaga: Sept 2023 - Sept 2024",
+            english: "📍 Málaga: Sept 2023 - Sept 2024"
+        },
+        color: "#54b948",
+        technologies: ["Java", "SpringBoot", "Kafka", "MongoDB", "AWS", "Gitlab", "Terraform", "Docker", "Kubernetes"]
+    },
+    {
+        title: {
+            spanish: "Ingeniero de IA lider",
+            english: "AI Engineer Lead"
+        },
+        company:{
+            spanish: "Bemyvega",
+            english: "Bemyvega"
+        },
+        description: {
+            spanish: "Contratacion, formacion y liderazgo de un equipo de 3 ingenieros de IA. Desarrollo End to End de un sistema de subtitulado multiidioma automatico usando LLMs para un producto en local.",
+            english: "Recruitment, training and leadership of a team of 3 AI engineers. End to End development of an automatic multi-language subtitling system using LLMs for a local product."
+        },
+        period: {
+            spanish: "📍 Murcia: Enero 2023 - Junio 2023",
+            english: "📍 Murcia: Jan 2023 - June 2023"
+        },
+        color: "#378baf",
+        technologies: ["Python", "HuggingFace", "Gitlab"]
+    }
+];
+
+import JobCard from "../widgets/JobCard.astro";
+
+const { currentLanguage } = Astro.props;
+
+---
+
+<section id="experience" class="experience">
+    <div>
+        <h1 class="section-title" id="experience-title" data-i18n="experience-title">
+            {currentLanguage === 'spanish' ? 'Experiencia' : 'Experience'}
+        </h1>
+        <div class="experience-container">
+            {jobs.map((job) => <JobCard job={job} key={job.company} language={currentLanguage}/>)}
+        </div>
+    </div>
+</section>
+
+<script>
+    // Actualizar cuando cambia el idioma
+    document.addEventListener('languageChanged', (event) => {
+        if (event instanceof CustomEvent && event.detail && event.detail.language) {
+            // El título se actualiza automáticamente a través del sistema central de traducciones
+            // No necesitamos actualizar las tarjetas de trabajo aquí porque se manejan en JobCard.astro
+        }
+    });
+</script>
+
+<style>
+    .experience {
+        text-align: center;
+    }
+
+    .experience-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 50px;
+        color: #ffffff;
+        text-align: center;
+        height: auto;
+        padding: 50px;
+        margin-bottom: 5rem;
+    }
+
+    .section-title {
+    }
+
+    @media (max-width: 768px) {
+        .section-title {
+            margin-top: 0rem;
+        }
+
+        .experience-container {
+            margin-bottom: 0rem;
+        }
+        
+    }
+
+
+</style>

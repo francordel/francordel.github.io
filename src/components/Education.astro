@@ -1,0 +1,150 @@
+---
+const schools = [
+    {
+        website: "https://www.um.es/web/informatica/inicio",
+        title: {
+            spanish: "Universidad de Murcia - Facultad de Informática",
+            english: "University of Murcia, Spain - School of Computer Science",
+        },
+        subtitle: {
+            spanish: "Grado en Ingenería Informática - Mención en Software",
+            english: "Bachelor in Computer Science - Software Major",
+        },
+        period:
+        {
+            spanish: "Septiembre 2019 - Junio 2023",
+            english: "September 2019 - June 2023",
+        }, 
+        description: {
+            spanish: "Graduado con honores con una media de 8.61 ",
+            english: "Graduated with honors with an average of 8.61 GPA",
+        },
+        image: "/assets/education/UMU.jpg"
+        },
+    {
+        website: "https://uwr.edu.pl/en/about-university/faculties/faculty-of-mathematics-and-computer-science/",
+        title: {
+            spanish: "Universidad de Wroclaw, Polonia - Facultad de Informática",
+            english: "University of Wroclaw, Poland - School of Computer Science",
+        },
+        subtitle: {
+            spanish: "Erasmus - Grado en Ingenería Informática",
+            english: "Erasmus - Bachelor in Computer Science",
+        },
+        period:
+        {
+            spanish: "Oct 2021 - feb 2022",
+            english: "Oct 2021 - Feb 2022",
+        }, 
+        description: {
+            spanish: "Erasmus en Polonia, donde cursé asignaturas de Inteligencia Artificial y Aprendizaje Automático, asi como tercer el curso de la carrera",
+            english: "Erasmus in Poland, where I took courses in Artificial Intelligence and Machine Learning, as well as third-year courses of my degree",
+        },
+        image: "/assets/education/wroclaw.jpg"
+        }
+];
+import EducationCard from "../widgets/EducationCard.astro";
+
+const { currentLanguage } = Astro.props;
+---
+
+<section id="education" class="education">
+    <div>
+        <h1 class="section-title text-center" id="education-title" data-i18n="education-title">
+            {currentLanguage === 'spanish' ? 'Educación' : 'Education'}
+        </h1>
+        <div class="education-container">
+            {schools.map((school) => <EducationCard school={school} key={school.title} language={currentLanguage}/>)}
+        </div>
+    </div>
+</section>
+
+<script>
+    // Actualizar cuando cambie el idioma
+    document.addEventListener('languageChanged', (event) => {
+        if (event instanceof CustomEvent && event.detail && event.detail.language) {
+            updateEducationCards(event.detail.language);
+        }
+    });
+
+    // Inicializar con el idioma actual
+    document.addEventListener('DOMContentLoaded', () => {
+        const currentLanguage = localStorage.getItem('language') || 'spanish';
+        updateEducationCards(currentLanguage);
+    });
+
+    // Función para actualizar las tarjetas de educación cuando cambia el idioma
+    function updateEducationCards(language) {
+        const cards = document.querySelectorAll('.education-card');
+        
+        cards.forEach(card => {
+            // Obtener los elementos traducibles dentro de cada tarjeta
+            const titleElement = card.querySelector('.card-title');
+            const subtitleElement = card.querySelector('.card-subtitle');
+            const periodElement = card.querySelector('.card-period');
+            const descriptionElement = card.querySelector('.card-description');
+            
+            // Obtener datos almacenados en atributos data
+            if (titleElement) {
+                const titles = {
+                    spanish: titleElement.getAttribute('data-spanish-title'),
+                    english: titleElement.getAttribute('data-english-title')
+                };
+                if (titles[language]) {
+                    titleElement.textContent = titles[language];
+                }
+            }
+            
+            if (subtitleElement) {
+                const subtitles = {
+                    spanish: subtitleElement.getAttribute('data-spanish-subtitle'),
+                    english: subtitleElement.getAttribute('data-english-subtitle')
+                };
+                if (subtitles[language]) {
+                    subtitleElement.textContent = subtitles[language];
+                }
+            }
+            
+            if (periodElement) {
+                const periods = {
+                    spanish: periodElement.getAttribute('data-spanish-period'),
+                    english: periodElement.getAttribute('data-english-period')
+                };
+                if (periods[language]) {
+                    periodElement.textContent = periods[language];
+                }
+            }
+            
+            if (descriptionElement) {
+                const descriptions = {
+                    spanish: descriptionElement.getAttribute('data-spanish-description'),
+                    english: descriptionElement.getAttribute('data-english-description')
+                };
+                if (descriptions[language]) {
+                    descriptionElement.textContent = descriptions[language];
+                }
+            }
+        });
+    }
+</script>
+
+<style>
+    .education-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;   /* <-- apila verticalmente */
+        align-items: center;
+        margin-top: 3rem;
+        margin-bottom: 10rem;
+    }
+
+    @media (max-width: 768px) {
+        .section-title {
+            margin-top: 0rem;
+        }
+
+        .education-container {
+            margin-bottom: 0rem;
+        }
+    }
+</style>

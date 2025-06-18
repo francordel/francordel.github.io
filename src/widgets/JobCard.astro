@@ -1,0 +1,450 @@
+---
+const { job, language } = Astro.props;
+import Verdementa from "../svg/Verdementa.astro";
+import AytoCartagena from "../svg/AytoCartagena.astro";
+import IBM from "../svg/IBM.astro";
+import Vodafone from "../svg/Vodafone.astro";
+import Bemyvega from "../svg/Bemyvega.astro";
+
+import Git_Icon from "../svg/tech/Git_Icon.astro";
+import Python from "../svg/tech/Python.astro";
+import HuggingFace from "../svg/tech/HuggingFace.astro";
+import Harmbench from "../svg/tech/Harmbench.astro";
+import MCP from "../svg/tech/MCP.astro"; 
+import Java from "../svg/tech/Java.astro";
+import SpringBoot from "../svg/tech/SpringBoot.astro";
+import Docker from "../svg/tech/Docker.astro";
+import Kubernetes from "../svg/tech/Kubernetes.astro";
+import Kafka from "../svg/tech/Kafka.astro";
+import MongoDB from "../svg/tech/mongodb.astro";
+import AWS from "../svg/tech/AWS.astro";
+import Gitlab from "../svg/tech/gitlab.astro";
+import Terraform from "../svg/tech/Terraform.astro";
+
+
+import Django from "../svg/tech/Django.astro";
+import ASPNet from "../svg/tech/ASPNet.astro";
+import PostgreSQL from "../svg/tech/PostgreSQL.astro";
+import Redis from "../svg/tech/Redis.astro";
+import HTML from "../svg/tech/HTML.astro";
+import Javascript from "../svg/tech/Javascript.astro";
+import Bootstrap from "../svg/tech/Bootstrap.astro";
+import CSS from "../svg/tech/CSS.astro";
+import CSharp from "../svg/tech/CSharp.astro";
+import Xamarin from "../svg/tech/Xamarin.astro";
+import XML from "../svg/tech/XML.astro";
+
+const technologyComponents = {
+
+
+  Python: Python,
+  Git_Icon: Git_Icon,
+  HuggingFace: HuggingFace,
+  Harmbench: Harmbench,
+  MCP: MCP,
+  Java: Java,
+  SpringBoot: SpringBoot,
+  Docker: Docker,
+  Kubernetes: Kubernetes,
+  Kafka: Kafka,
+  MongoDB: MongoDB,
+  AWS: AWS,
+  Gitlab: Gitlab,
+  Terraform: Terraform,
+
+
+  Django: Django,
+  ASPNet: ASPNet,
+  PostgreSQL: PostgreSQL,
+  Redis: Redis,
+  HTML: HTML,
+  Javascript: Javascript,
+  Bootstrap: Bootstrap,
+  CSS: CSS,
+  CSharp: CSharp,
+  Xamarin: Xamarin,
+  XML: XML,
+};
+
+---
+<div class="card job-card">
+  <div class="content">
+    <div class="back">
+      <div class="back-content">
+          <strong class="job-title" 
+                 data-spanish-title={job.title.spanish} 
+                 data-english-title={job.title.english}>
+              {job.title[language]}
+          </strong>
+          {job.company[language] === "IBM Research" && <IBM />}
+          {job.company[language] === "Vodafone Innovation" && <Vodafone />}
+          {job.company[language] === "Bemyvega" && <Bemyvega />}
+
+          <strong class="job-company" 
+                 data-spanish-company={job.company.spanish} 
+                 data-english-company={job.company.english}>
+              {job.company[language]}
+          </strong>
+          <strong class="job-period" 
+                 data-spanish-period={job.period.spanish} 
+                 data-english-period={job.period.english}>
+              {job.period[language]}
+          </strong>
+          <div class="technologies">
+              {job.technologies.map((tech) => {
+                  const TechComponent = technologyComponents[tech];
+                  return <TechComponent />;
+              })}
+          </div>
+      </div>
+  </div>
+    <div class="front">
+      <div class="img">
+        <div class="circle"></div>
+        <div class="circle" id="right"></div>
+        <div class="circle" id="bottom"></div>
+      </div>
+
+      <div class="front-content">
+        <small class="badge job-company-badge"
+               data-spanish-company={job.company.spanish} 
+               data-english-company={job.company.english}>
+          {job.company[language]}
+        </small>
+        <div class="pre-line job-description"
+             data-spanish-description={job.description.spanish} 
+             data-english-description={job.description.english}>
+          {job.description[language]}
+        </div>
+        <div class="description">
+          <div class="title">
+            <strong class="job-title-front"
+                    data-spanish-title={job.title.spanish} 
+                    data-english-title={job.title.english}>
+              {job.title[language]}
+            </strong>
+          </div>
+          <p class="card-footer job-period-footer"
+             data-spanish-period={job.period.spanish} 
+             data-english-period={job.period.english}>
+            {job.period[language]}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    // Actualizar cuando cambia el idioma
+    document.addEventListener('languageChanged', (event) => {
+        if (event instanceof CustomEvent && event.detail && event.detail.language) {
+            updateJobCards(event.detail.language);
+        }
+    });
+
+    // Inicializar con el idioma actual
+    document.addEventListener('DOMContentLoaded', () => {
+        const currentLanguage = localStorage.getItem('language') || 'spanish';
+        updateJobCards(currentLanguage);
+    });
+
+    // Función para actualizar las tarjetas de trabajo
+    function updateJobCards(language) {
+        // Actualizar títulos
+        document.querySelectorAll('.job-title, .job-title-front').forEach(element => {
+            const spanishTitle = element.getAttribute('data-spanish-title');
+            const englishTitle = element.getAttribute('data-english-title');
+            
+            if (language === 'spanish' && spanishTitle) {
+                element.textContent = spanishTitle;
+            } else if (language === 'english' && englishTitle) {
+                element.textContent = englishTitle;
+            }
+        });
+        
+        // Actualizar empresas
+        document.querySelectorAll('.job-company, .job-company-badge').forEach(element => {
+            const spanishCompany = element.getAttribute('data-spanish-company');
+            const englishCompany = element.getAttribute('data-english-company');
+            
+            if (language === 'spanish' && spanishCompany) {
+                element.textContent = spanishCompany;
+            } else if (language === 'english' && englishCompany) {
+                element.textContent = englishCompany;
+            }
+        });
+        
+        // Actualizar periodos
+        document.querySelectorAll('.job-period, .job-period-footer').forEach(element => {
+            const spanishPeriod = element.getAttribute('data-spanish-period');
+            const englishPeriod = element.getAttribute('data-english-period');
+            
+            if (language === 'spanish' && spanishPeriod) {
+                element.textContent = spanishPeriod;
+            } else if (language === 'english' && englishPeriod) {
+                element.textContent = englishPeriod;
+            }
+        });
+        
+        // Actualizar descripciones
+        document.querySelectorAll('.job-description').forEach(element => {
+            const spanishDesc = element.getAttribute('data-spanish-description');
+            const englishDesc = element.getAttribute('data-english-description');
+            
+            if (language === 'spanish' && spanishDesc) {
+                element.textContent = spanishDesc;
+            } else if (language === 'english' && englishDesc) {
+                element.textContent = englishDesc;
+            }
+        });
+    }
+</script>
+
+<style>
+  .technologies {
+    width: calc(100% - 250px);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    background-color: transparent;
+  }
+
+  .pre-line {
+    font-weight: 600;
+    padding: 10px;
+    white-space: pre-line;
+  }
+
+  .card {
+    overflow: visible;
+    width: 590px;
+    height: 354px;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 300ms;
+    box-shadow: 0px 0px 10px 1px var(--background-color-shadow);
+    border-radius: 5px;
+  }
+
+  .front,
+  .back {
+    background-color: var(--card-color);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .back {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .back::before {
+    position: absolute;
+    content: " ";
+    display: block;
+    width: 200px;
+    height: 200%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--purple-card-career-color),
+      var(--purple-card-career-color),
+      var(--purple-card-career-color),
+      var(--purple-card-career-color),
+      transparent
+    );
+    animation: rotation_481 20000ms infinite linear;
+  }
+
+  .back-content {
+    position: absolute;
+    width: 99%;
+    height: 99%;
+    background-color: var(--card-color);
+    border-radius: 5px;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 20px;
+  }
+
+  .back-content strong:first-child {
+    font-size: 24px;
+    margin-bottom: auto;
+  }
+
+  .back-content strong:nth-last-child(2) {
+    font-size: 18px;
+    margin-top: auto;
+  }
+
+  .back-content strong:last-child {
+    font-size: 18px;
+  }
+
+  .card:hover .content {
+    transform: rotateY(180deg);
+  }
+
+  @keyframes rotation_481 {
+    0% {
+      transform: rotateZ(0deg);
+    }
+
+    0% {
+      transform: rotateZ(360deg);
+    }
+  }
+
+  .front {
+    transform: rotateY(180deg);
+    color: var(--text-color);
+  }
+
+  .front .front-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .front-content .badge {
+    font-weight: 600;
+    background-color: var(--background-color);
+    padding: 2px 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(2px);
+    width: fit-content;
+  }
+
+  .description {
+    box-shadow: 0px 0px 10px 5px var(--background-color-shadow);
+    width: 100%;
+    white-space: nowrap;
+    padding: 10px;
+    background-color: var(--background-color);
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+  }
+
+  .title {
+    font-size: 13px;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .title p {
+    width: 50%;
+  }
+
+  .card-footer {
+    color: var(--text-color);
+    margin-top: 5px;
+    font-size: 12px;
+    text-align: end;
+  }
+
+  .front .img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: var(--purple-card-career-color);
+    position: relative;
+    filter: blur(15px);
+    animation: floating 2600ms infinite linear;
+  }
+
+  #bottom {
+    background-color: var(--purple-card-career-color);
+    left: 50px;
+    top: 0px;
+    width: 150px;
+    height: 150px;
+    animation-delay: -800ms;
+  }
+
+  #right {
+    background-color: var(--purple-card-career-color);
+    left: 160px;
+    top: -80px;
+    width: 30px;
+    height: 30px;
+    animation-delay: -1800ms;
+  }
+
+  @keyframes floating {
+    0% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(10px);
+    }
+
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pre-line {
+      font-size: 13px;
+    }
+
+    .card-footer {
+      font-size: 10px;
+    }
+
+    .back-content strong:first-child {
+      font-size: 18px;
+    }
+
+    .back-content strong:nth-last-child(2) {
+      font-size: 14px;
+    }
+
+    .back-content strong:last-child {
+      font-size: 14px;
+    }
+
+    .technologies {
+      width: calc(100% - 20px);
+    }
+
+    .description .title {
+      font-size: 10px;
+    }
+  }
+</style>

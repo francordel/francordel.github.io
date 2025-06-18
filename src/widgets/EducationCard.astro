@@ -1,0 +1,205 @@
+---
+const { school, language } = Astro.props;
+
+import Flutter from '../svg/tech/Flutter.astro';
+import Firebase from '../svg/tech/Firebase.astro';
+import Dart from '../svg/tech/Dart.astro';
+
+const technologyComponents = {
+    'Dart': Dart,
+    'Flutter': Flutter,
+    'Firebase': Firebase,
+};
+---
+
+<div class="card education-card">
+    <a href={school.website}  target="_blank" rel="noopener noreferrer">
+        <div class="card2">
+            <div class="image-container">
+                <img src={school.image} alt={`Imagen de ${school.title[language]}`} />
+            </div>
+            <div class="info-container">
+                <div class="content">
+                    <h2 class="card-title" 
+                    data-spanish-title={school.title.spanish} 
+                    data-english-title={school.title.english}>
+                        {school.title[language]}
+                    </h2>
+                    <h3 class="card-subtitle" 
+                    data-spanish-subtitle={school.subtitle.spanish} 
+                    data-english-subtitle={school.subtitle.english}>
+                        {school.subtitle[language]}
+                    </h3>
+                    <p class="period card-period" 
+                    data-spanish-period={school.period.spanish} 
+                    data-english-period={school.period.english}>
+                        {school.period[language]}
+                    </p>
+                    <p class="description card-description" 
+                    data-spanish-description={school.description.spanish} 
+                    data-english-description={school.description.english}>
+                        {school.description[language]}
+                    </p>
+                    <hr class="divider" />
+                </div>
+            </div>
+        </div>
+    <a/>
+</div>
+
+<style>
+    
+    .card {
+        width: 1200px;
+        overflow: visible;
+        height: auto;
+        background-image: linear-gradient(163deg, var(--special-border-color) 0%, #264edf 100%);
+        border-radius: 40px;
+        transition: all 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        z-index: 1;
+        margin-top: 20px;
+    }
+
+    .card2 {
+        width: 100%;
+        height: 100%;
+        background-color: var(--card-color);
+        border-radius: 20px;
+        transition: all 0.2s;
+        display: flex;
+        overflow: hidden;
+    }
+
+    .card2:hover {
+        transform: scale(0.99);
+        border-radius: 40px;
+    }
+
+    .card:hover {
+        box-shadow: 0px 0px 30px 1px rgba(45, 110, 213, 0.3);
+    }
+
+    .image-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .info-container {
+        flex: 2;
+        padding: 15px;
+        color: var(--text-color);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%; 
+    }
+
+    h2 {
+        color: #4173E6;
+        font-size: 2em;
+        margin-bottom: 5px; 
+    }
+
+    h3 {
+        color: #4173E6;
+        font-size: 1.5em;
+        opacity: 0.75;
+        margin-bottom: 5px;
+    }
+
+    .period {
+        font-size: 1em;
+        opacity: 0.55;
+        margin-bottom: 15px; 
+    }
+
+    .description {
+        font-size: 16px;
+        line-height: 2;
+        margin-bottom: 1rem;
+    }
+
+    .divider {
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, transparent, var(--text-color), transparent);
+    }
+
+    .technologies {
+        position: relative;
+        width: calc(100% - 650px);
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        gap: 10px;
+        flex-direction: row;
+        max-height: 40px; 
+    }
+
+    @media (max-width: 768px) {
+        .card {
+            width: 95%;
+            padding: 3px; 
+            
+        }
+
+        .card2{
+            border-radius: 40px;
+        }
+
+        .card2:hover {
+            transform: scale(1);
+            border-radius: 40px;
+        }
+
+        .image-container{
+            display: none;
+        }
+
+        .info-container {
+            padding: 25px 5px; 
+        }
+
+        h2, h3, .period, .description {
+            text-align: center; 
+        }
+
+        h2 {
+            font-size: 1em;
+            margin-bottom: 5px; 
+        }
+
+        h3 {
+            font-size: .75em;
+            margin-bottom: 5px;
+        }
+
+        .period {
+            font-size: .65em;
+            margin-bottom: 15px; 
+        }
+
+        .description{
+            font-size: .75em;
+            line-height: 2;
+            margin-bottom: 1rem;
+        }
+
+        .divider {
+            margin: 10px 0; 
+        }
+    }
+
+</style>

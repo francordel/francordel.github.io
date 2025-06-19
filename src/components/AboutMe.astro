@@ -192,6 +192,7 @@ const { currentLanguage } = Astro.props;
     }
 
     .column {
+        top: -150px;
         display: flex;
         flex-direction: column;
         position: relative;
@@ -359,11 +360,11 @@ const { currentLanguage } = Astro.props;
     .waves-level-1,
     .waves-level-2,
     .waves-level-3 {
-        padding-top: 50px;
+        padding-top: 0px;
         width: 100%;
-        top: 2px;
+        top: 0px;
         pointer-events: none;
-
+        z-index: 1;
     }
 
     .waves-level-1,

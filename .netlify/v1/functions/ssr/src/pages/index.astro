@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Intro from '../components/Intro.astro';
+import AboutMe from '../components/AboutMe.astro';
+import Experience from '../components/Experience.astro';
+import Projects from '../components/Projects.astro';
+import Education from '../components/Education.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import LanguageSwitch from '../components/LanguageSwitch.astro';
+// Determinar el idioma inicial (por defecto español)
+const currentLanguage = 'english'; // Cambia a 'spanish' si prefieres español
+---
+
+
+<Layout title="Fran Cortés Delgado | Ingeniero de Software">
+  <main>
+
+    <Intro />
+    <Header currentLanguage={currentLanguage} />
+    <AboutMe currentLanguage={currentLanguage} />
+    <Experience currentLanguage={currentLanguage} />
+    <Projects currentLanguage={currentLanguage} />
+    <Education currentLanguage={currentLanguage} />
+    <Contact currentLanguage={currentLanguage} />
+    <Footer currentLanguage={currentLanguage} />
+    <LanguageSwitch currentLanguage={currentLanguage} />
+  </main>
+
+  <!-- Scripts de idioma y animación -->
+  <script>
+    function initializeLanguage() {
+      let savedLanguage = localStorage.getItem('language');
+      if (!savedLanguage) {
+        const userLanguage = navigator.language;
+        savedLanguage = userLanguage.startsWith('es') ? 'spanish' : 'english';
+        localStorage.setItem('language', savedLanguage);
+      }
+
+      document.documentElement.setAttribute('data-language', savedLanguage);
+      updateAllLanguageElements(savedLanguage);
+    }
+
+    function updateAllLanguageElements(language) {
+      const container1 = document.getElementById('language-container');
+      const container2 = document.getElementById('language-container2');
+
+      if (container1 && container2) {
+        container1.style.display = language === 'spanish' ? 'flex' : 'none';
+        container2.style.display = language === 'english' ? 'flex' : 'none';
+      }
+
+      document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language } }));
+    }
+
+    document.addEventListener('DOMContentLoaded', initializeLanguage);
+  </script>
+</Layout>

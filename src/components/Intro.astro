@@ -125,7 +125,15 @@ const name = "Fran Cortés";
   overflow: visible;
   position: relative;
 }
+/* Intro.astro ─ añade esto (o cámbialo) */
+.intro-mask-section {
+  position: relative;
+  overflow: hidden;   /* ✨ lo importante */
+}
 
+html,body{
+  overflow-x:hidden;  /* por si algo más asoma horizontalmente */
+}
 /* efecto de máscara de texto */
 .mask {
   height: 100%;

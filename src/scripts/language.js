@@ -6,8 +6,8 @@ const translations = {
         english: 'Fran Cortés Delgado'
     },
     'title': {
-        spanish: 'Ingeniero de Software',
-        english: 'Software Engineer'
+        spanish: 'Investigador de IA',
+        english: 'AI Researcher'
     },
     'motto': {
         spanish: 'Pasión por la tecnología, compromiso con la excelencia.',

@@ -17,6 +17,11 @@ const { school, language } = Astro.props;
                     data-english-title={school.title.english}>
                         {school.title[language]}
                     </h2>
+                    <h3 class="card-subtitle" 
+                    data-spanish-subtitle={school.subtitle.spanish} 
+                    data-english-subtitle={school.subtitle.english}>
+                        {school.subtitle[language]}
+                    </h3>
                     <p class="period card-period" 
                     data-spanish-period={school.period.spanish} 
                     data-english-period={school.period.english}>
@@ -115,6 +120,14 @@ const { school, language } = Astro.props;
         font-size: 1.5em;
         opacity: 0.75;
         margin-bottom: 5px;
+    }
+
+    .card-subtitle, h3.card-subtitle {
+        font-size: 0.95em; /* Más pequeño que el título */
+        opacity: 0.75;
+        margin-bottom: 5px;
+        color: #4173E6;
+        text-align: center;
     }
 
     .period {

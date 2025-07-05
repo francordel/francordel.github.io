@@ -2,6 +2,7 @@
 const { job, language } = Astro.props;
 import IBM from "../svg/IBM.astro";
 import Vodafone from "../svg/Vodafone.astro";
+import UMU from "../svg/UMU.astro";
 import Bemyvega from "../svg/Bemyvega.astro";
 
 import Git_Icon from "../svg/tech/Git_Icon.astro";
@@ -53,6 +54,7 @@ const technologyComponents = {
           </strong>
           {job.company[language] === "IBM Research" && <IBM />}
           {job.company[language] === "Vodafone Innovation" && <Vodafone />}
+          {job.company[language] === "Universidad de Murcia" && <UMU />}
           {job.company[language] === "Bemyvega" && <Bemyvega />}
 
           <strong class="job-company" 

@@ -1,0 +1,132 @@
+---
+const researches = [
+    {
+        website: "/assets/research/TFG_FranciscoJoseCortesDelgado.pdf",
+        title: {
+            spanish: "Trabajo de Fin de Grado",
+            english: "Final degree project",
+        },
+        period:
+        {
+            spanish: "Junio 2023",
+            english: "June 2023",
+        }, 
+        description: {
+            spanish: "Trabajo Fin de Grado del grado en Ingeniería Informática de la Universidad de Murcia, desarrollo y despliegue en AWS de la Inteligencia Artificial de MiSintaxis, para el analisis sintáctico de textos en español",
+            english: "Final Degree Project of the Bachelor's degree in Computer Science at the University of Murcia, development and deployment in AWS of the AI of MiSintaxis, for syntactic analysis of texts in Spanish",
+        },
+        image: "/assets/research/tfg.png"
+        },
+    {
+        website: "/assets/research/paper_IA_MiSintaxis.pdf",
+        title: {
+            spanish: "Paper: MiSintaxis IA Trabajo Fin de Grado",
+            english: "Paper: MiSintaxis AI Final Degree Project",
+        },
+        period:
+        {
+            spanish: "Junio 2023",
+            english: "June 2023",
+        }, 
+        description: {
+            spanish: "Paper que resume mi trabajo de fin de grado",
+            english: "Paper that summarizes my final degree project",
+        },
+        image: "/assets/research/paperMiSintaxis.png"
+        }
+];
+import ResearchCard from "../widgets/ResearchCard.astro";
+
+const { currentLanguage } = Astro.props;
+---
+
+<section id="research" class="research">
+    <div>
+        <h1 class="section-title text-center" id="research-title" data-i18n="research-title">
+            {currentLanguage === 'spanish' ? 'Investigación' : 'Research'}
+        </h1>
+        <div class="research-container">
+            {researches.map((school) => <ResearchCard school={school} key={school.title} language={currentLanguage}/>)}
+        </div>
+    </div>
+</section>
+
+<script>
+    // Actualizar cuando cambie el idioma
+    document.addEventListener('languageChanged', (event) => {
+        if (event instanceof CustomEvent && event.detail && event.detail.language) {
+            updateResearchCards(event.detail.language);
+        }
+    });
+
+    // Inicializar con el idioma actual
+    document.addEventListener('DOMContentLoaded', () => {
+        const currentLanguage = localStorage.getItem('language') || 'spanish';
+        updateResearchCards(currentLanguage);
+    });
+
+    // Función para actualizar las tarjetas de educación cuando cambia el idioma
+    function updateResearchCards(language) {
+        const cards = document.querySelectorAll('.research-card');
+        
+        cards.forEach(card => {
+            // Obtener los elementos traducibles dentro de cada tarjeta
+            const titleElement = card.querySelector('.card-title');
+            const periodElement = card.querySelector('.card-period');
+            const descriptionElement = card.querySelector('.card-description');
+            
+            // Obtener datos almacenados en atributos data
+            if (titleElement) {
+                const titles = {
+                    spanish: titleElement.getAttribute('data-spanish-title'),
+                    english: titleElement.getAttribute('data-english-title')
+                };
+                if (titles[language]) {
+                    titleElement.textContent = titles[language];
+                }
+            }
+            
+            if (periodElement) {
+                const periods = {
+                    spanish: periodElement.getAttribute('data-spanish-period'),
+                    english: periodElement.getAttribute('data-english-period')
+                };
+                if (periods[language]) {
+                    periodElement.textContent = periods[language];
+                }
+            }
+            
+            if (descriptionElement) {
+                const descriptions = {
+                    spanish: descriptionElement.getAttribute('data-spanish-description'),
+                    english: descriptionElement.getAttribute('data-english-description')
+                };
+                if (descriptions[language]) {
+                    descriptionElement.textContent = descriptions[language];
+                }
+            }
+        });
+    }
+</script>
+
+<style>
+    .research-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: stretch;
+        gap: 2rem;                  /* Espacio horizontal entre tarjetas */
+        margin-top: 3rem;
+        margin-bottom: 10rem;
+    }
+
+    @media (max-width: 768px) {
+        .section-title {
+            margin-top: 0rem;
+        }
+
+        .research-container {
+            margin-bottom: 0rem;
+        }
+    }
+</style>

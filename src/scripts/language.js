@@ -39,6 +39,10 @@ const translations = {
         spanish: 'Educación',
         english: 'Education'
     },
+    'nav-research': {
+        spanish: 'Investigación',
+        english: 'Research'
+    },
     'nav-contact': {
         spanish: 'Contacto',
         english: 'Contact'

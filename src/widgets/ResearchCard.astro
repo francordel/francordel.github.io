@@ -1,0 +1,191 @@
+---
+const { school, language } = Astro.props;
+
+
+---
+
+<div class="card education-card">
+    <a href={school.website}  target="_blank" rel="noopener noreferrer">
+        <div class="card2">
+            <div class="image-container">
+                <img src={school.image} alt={`Imagen de ${school.title[language]}`} />
+            </div>
+            <div class="info-container">
+                <div class="content">
+                    <h2 class="card-title" 
+                    data-spanish-title={school.title.spanish} 
+                    data-english-title={school.title.english}>
+                        {school.title[language]}
+                    </h2>
+                    <p class="period card-period" 
+                    data-spanish-period={school.period.spanish} 
+                    data-english-period={school.period.english}>
+                        {school.period[language]}
+                    </p>
+                    <p class="description card-description" 
+                    data-spanish-description={school.description.spanish} 
+                    data-english-description={school.description.english}>
+                        {school.description[language]}
+                    </p>
+                    <hr class="divider" />
+                </div>
+            </div>
+        </div>
+    <a/>
+</div>
+
+<style>
+    
+    .card {
+        width: 380px;
+        min-width: 280px;
+        max-width: 420px;
+        height: 600px; /* Más grande para mejor proporción */
+        overflow: hidden;
+        background-image: linear-gradient(163deg, var(--special-border-color) 0%, #264edf 100%);
+        border-radius: 40px;
+        transition: all 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        z-index: 1;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+    }
+
+    .card2 {
+        width: 100%;
+        height: 100%;
+        background-color: var(--card-color);
+        border-radius: 20px;
+        transition: all 0.2s;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .card2:hover {
+        transform: scale(0.99);
+        border-radius: 40px;
+    }
+
+    .card:hover {
+        box-shadow: 0px 0px 30px 1px rgba(45, 110, 213, 0.3);
+    }
+
+    .image-container {
+        width: 100%;
+        height: 50%; /* Ocupa la mitad de la tarjeta */
+        min-height: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        background: #fff;
+    }
+
+    .info-container {
+        flex: 1;
+        padding: 15px;
+        color: var(--text-color);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 50%; /* Ocupa la otra mitad */
+        min-height: 0;
+    }
+
+    h2 {
+        color: #4173E6;
+        font-size: 1.1em;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    h3 {
+        color: #4173E6;
+        font-size: 1.5em;
+        opacity: 0.75;
+        margin-bottom: 5px;
+    }
+
+    .period {
+        font-size: 0.95em;
+        opacity: 0.55;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .description {
+        font-size: 0.95em;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .divider {
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, transparent, var(--text-color), transparent);
+        margin: 10px 0;
+    }
+
+    .technologies {
+        position: relative;
+        width: calc(100% - 650px);
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        gap: 10px;
+        flex-direction: row;
+        max-height: 40px; 
+    }
+
+    @media (max-width: 900px) {
+        .card {
+            width: 95vw;
+            min-width: 0;
+            max-width: 100vw;
+            height: auto;
+        }
+        .image-container {
+            height: 100px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .card {
+            width: 95vw;
+            min-width: 0;
+            max-width: 100vw;
+            height: auto;
+            padding: 3px;
+        }
+        .image-container {
+            display: flex;
+            height: 160px; /* Ajusta el alto según prefieras */
+        }
+        .info-container {
+            padding: 25px 5px;
+            height: auto;
+        }
+        h2, .period, .description {
+            text-align: center;
+        }
+        h2 {
+            font-size: 1em;
+        }
+        .period, .description {
+            font-size: .85em;
+        }
+    }
+
+</style>

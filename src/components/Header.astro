@@ -8,9 +8,11 @@ const { currentLanguage } = Astro.props;
         <div class="menu-toggle">
             <span class="hamburger"></span>
         </div>
+        <!--
         <div class="navigation-switch">
             <Switch />
         </div>
+         -->
         <div class="navigation-right">
             <a href="https://francordel.com" id="link-home" data-i18n="nav-home">{currentLanguage === 'spanish' ? 'Inicio' : 'Home'}</a>
             <a href="#about-me" id="link-about" data-i18n="nav-about">{currentLanguage === 'spanish' ? 'Sobre mí' : 'About Me'}</a>

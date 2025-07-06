@@ -31739,7 +31739,7 @@ const $$Education = createComponent(($$result, $$props, $$slots) => {
         english: "University of Murcia, Spain - School of Computer Science"
       },
       subtitle: {
-        spanish: "Grado en Ingener\xEDa Inform\xE1tica - Menci\xF3n en Software",
+        spanish: "Grado en Ingenier\xEDa Inform\xE1tica - Menci\xF3n en Software",
         english: "Bachelor in Computer Science - Software Major"
       },
       period: {

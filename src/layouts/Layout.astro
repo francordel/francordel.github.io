@@ -9,6 +9,15 @@ const { title } = Astro.props;
 <!doctype html>
 <html lang="en">
 	<head>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-WCQ3NQ7VJF"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-WCQ3NQ7VJF');
+		</script>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Porfolio Fran" />
 		<meta name="viewport" content="width=device-width" />
@@ -22,10 +31,24 @@ const { title } = Astro.props;
 		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 		<script type="text/javascript"> emailjs.init('-Klfv3U8tsRtZ3kaH') </script>
 	</head>
+
 	<body>
 		<slot />
 		<script src="../scripts/base.js"></script>
 		<script src="../scripts/language.js"></script>
+		<script is:inline>
+			document.addEventListener("DOMContentLoaded", () => {
+				const cvLink = document.getElementById("cv-download");
+				if (cvLink) {
+					cvLink.addEventListener("click", () => {
+						gtag('event', 'cv_descargado', {
+							event_category: 'descarga',
+							event_label: 'CV_FranCortes'
+						});
+					});
+				}
+			});
+		</script>
 	</body>
 </html>
 <style is:global>

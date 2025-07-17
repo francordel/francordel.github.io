@@ -858,6 +858,7 @@ const { currentLanguage } = Astro.props;
         align-items: center;
         gap: 2rem;
         margin-top: 1.5rem;
+        flex-wrap: wrap;
     }
     .medal {
         background: rgba(255,255,255,0.15);
@@ -869,6 +870,8 @@ const { currentLanguage } = Astro.props;
         justify-content: center;
         transition: transform 0.2s;
         border: 2px solid rgba(255,255,255,0.25);
+        min-width: 72px;
+        min-height: 72px;
     }
     .medal:hover {
         transform: scale(1.08) rotate(-5deg);
@@ -877,30 +880,91 @@ const { currentLanguage } = Astro.props;
     .medal svg {
         width: 48px;
         height: 48px;
+        flex-shrink: 0;
     }
+    
+    /* Large tablets and small desktops */
+    @media (max-width: 1024px) {
+        .medals-row {
+            gap: 1.5rem;
+            margin-top: 1.2rem;
+        }
+        .medal {
+            padding: 1rem;
+            min-width: 64px;
+            min-height: 64px;
+        }
+        .medal svg {
+            width: 42px;
+            height: 42px;
+        }
+    }
+    
+    /* Tablets */
     @media (max-width: 768px) {
         .medals-row {
             gap: 1rem;
             margin-top: 1rem;
         }
         .medal {
-            padding: 0.7rem;
+            padding: 0.8rem;
+            min-width: 56px;
+            min-height: 56px;
         }
         .medal svg {
             width: 36px;
             height: 36px;
         }
     }
+    
+    /* Small tablets and large phones */
+    @media (max-width: 640px) {
+        .medals-row {
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+        .medal {
+            padding: 0.6rem;
+            min-width: 48px;
+            min-height: 48px;
+        }
+        .medal svg {
+            width: 32px;
+            height: 32px;
+        }
+    }
+    
+    /* Mobile phones */
     @media (max-width: 480px) {
         .medals-row {
             gap: 0.5rem;
+            margin-top: 0.5rem;
         }
         .medal {
             padding: 0.4rem;
+            min-width: 40px;
+            min-height: 40px;
         }
         .medal svg {
             width: 28px;
             height: 28px;
+        }
+    }
+    
+    /* Very small mobile phones */
+    @media (max-width: 360px) {
+        .medals-row {
+            gap: 0.3rem;
+            margin-top: 0.5rem;
+        }
+        .medal {
+            padding: 0.3rem;
+            min-width: 36px;
+            min-height: 36px;
+        }
+        .medal svg {
+            width: 24px;
+            height: 24px;
         }
     }
 </style>

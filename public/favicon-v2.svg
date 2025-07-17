@@ -1,1 +1,40 @@
- 
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Keyboard base -->
+  <rect x="10" y="35" width="80" height="45" rx="5" ry="5" fill="#333" stroke="#555" stroke-width="2"/>
+  
+  <!-- Top row of keys -->
+  <rect x="15" y="40" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="24" y="40" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="33" y="40" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="42" y="40" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="51" y="40" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="60" y="40" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="69" y="40" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="78" y="40" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  
+  <!-- Middle row of keys -->
+  <rect x="15" y="50" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="24" y="50" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="33" y="50" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="42" y="50" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="51" y="50" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="60" y="50" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="69" y="50" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="78" y="50" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  
+  <!-- Bottom row of keys -->
+  <rect x="15" y="60" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="24" y="60" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="33" y="60" width="20" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="60" y="60" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="69" y="60" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  <rect x="78" y="60" width="6" height="6" rx="1" fill="#ddd" stroke="#999" stroke-width="0.5"/>
+  
+  <!-- Screen/monitor above keyboard -->
+  <rect x="25" y="15" width="50" height="30" rx="2" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+  <rect x="27" y="17" width="46" height="26" rx="1" fill="#0066cc"/>
+  
+  <!-- Base stand -->
+  <rect x="45" y="45" width="10" height="3" fill="#555"/>
+  <rect x="40" y="48" width="20" height="2" fill="#555"/>
+</svg> 

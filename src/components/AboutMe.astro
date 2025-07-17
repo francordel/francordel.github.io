@@ -14,6 +14,9 @@ import Waves1 from "../svg/waves/Waves1.astro";
 import Waves2 from "../svg/waves/Waves2.astro";
 import Waves3 from "../svg/waves/Waves3.astro";
 import WavesReverse from "../svg/waves/WavesReverse.astro";
+import IBM from "../svg/IBM.astro";
+import Vodafone from "../svg/Vodafone.astro";
+import UMU from "../svg/UMU.astro";
 const { currentLanguage } = Astro.props;
 ---
 
@@ -39,6 +42,11 @@ const { currentLanguage } = Astro.props;
                                 </span>
                             </div>
                         </div>
+                    </div>
+                    <div class="medals-row">
+                        <a class="medal" href="https://research.ibm.com/" target="_blank" rel="noopener noreferrer"><IBM /></a>
+                        <a class="medal" href="https://www.vodafone.es/c/empresas/grandes-clientes/es/ecosistema-de-innovacion/hub-malaga/" target="_blank" rel="noopener noreferrer"><Vodafone /></a>
+                        <a class="medal" href="https://www.um.es/web/informatica/" target="_blank" rel="noopener noreferrer"><UMU /></a>
                     </div>
                 </div>
 
@@ -309,20 +317,25 @@ const { currentLanguage } = Astro.props;
         margin-bottom: 1rem;
     }
 
+    .avatar-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 140px;
+        height: 140px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        animation: pulse 2s ease-in-out infinite;
+        pointer-events: none;
+    }
+
     .avatar-emoji {
         font-size: 4rem;
         position: relative;
         z-index: 2;
         animation: float 3s ease-in-out infinite;
-    }
-
-    .avatar-glow {
-        position: absolute;
-        width: 140px;
-        height: 140px;
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
-        border-radius: 50%;
-        animation: pulse 2s ease-in-out infinite;
     }
 
     .hero-text {
@@ -767,8 +780,16 @@ const { currentLanguage } = Astro.props;
             font-size: 1rem;
         }
 
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+        }
+        .avatar-glow {
+            width: 90px;
+            height: 90px;
+        }
         .avatar-emoji {
-            font-size: 3rem;
+            font-size: 2.7rem;
         }
 
         .section-header {
@@ -829,5 +850,57 @@ const { currentLanguage } = Astro.props;
 
         .icon-lg { display: none; }
         .icon-sm { display: inline; }
+    }
+
+    .medals-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-top: 1.5rem;
+    }
+    .medal {
+        background: rgba(255,255,255,0.15);
+        border-radius: 50%;
+        padding: 1.2rem;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s;
+        border: 2px solid rgba(255,255,255,0.25);
+    }
+    .medal:hover {
+        transform: scale(1.08) rotate(-5deg);
+        background: rgba(255,255,255,0.25);
+    }
+    .medal svg {
+        width: 48px;
+        height: 48px;
+    }
+    @media (max-width: 768px) {
+        .medals-row {
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .medal {
+            padding: 0.7rem;
+        }
+        .medal svg {
+            width: 36px;
+            height: 36px;
+        }
+    }
+    @media (max-width: 480px) {
+        .medals-row {
+            gap: 0.5rem;
+        }
+        .medal {
+            padding: 0.4rem;
+        }
+        .medal svg {
+            width: 28px;
+            height: 28px;
+        }
     }
 </style>

@@ -329,9 +329,12 @@ const technologyComponents = {
     background: rgba(var(--blue-titles-color), 0.1);
     padding: 0.5rem 1rem;
     border-radius: 50px;
-    white-space: nowrap;
+    white-space: normal;
+    word-break: break-word;
     font-weight: 500;
-  }
+    max-width: 180px;
+    display: inline-block;
+}
 
   .job-description {
     color: var(--text-color-p);
@@ -460,6 +463,7 @@ const technologyComponents = {
     .job-period {
       font-size: 0.8rem;
       padding: 0.4rem 0.8rem;
+      max-width: 140px;
     }
 
     .job-description {
@@ -501,6 +505,11 @@ const technologyComponents = {
 
     .job-description {
       font-size: 0.85rem;
+    }
+
+    .job-period {
+      font-size: 0.7rem;
+      max-width: 100px;
     }
 
     .tech-item {

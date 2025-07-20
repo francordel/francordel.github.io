@@ -68,17 +68,57 @@ const translations = {
     },
     
     // Traducciones de highlight items
+    'expertise-title': {
+        spanish: 'Áreas de Especialización',
+        english: 'Areas of Expertise'
+    },
     'highlight-education': {
         spanish: 'Ing. Informático',
         english: 'Computer Engineer'
     },
+    'education-desc': {
+        spanish: 'Graduación con honores - Universidad de Murcia',
+        english: 'Graduated with honors - University of Murcia'
+    },
     'highlight-web': {
-        spanish: 'Desarrollo Web Full-Stack',
-        english: 'Full-Stack Web Dev'
+        spanish: 'Desarrollo Full-Stack',
+        english: 'Full-Stack Development'
+    },
+    'web-desc': {
+        spanish: 'Fundación de MiSintaxis - 100k descargas',
+        english: 'Founded MiSintaxis - 100k downloads'
     },
     'highlight-mobile': {
         spanish: 'Desarrollo Móvil',
         english: 'Mobile Development'
+    },
+    'mobile-desc': {
+        spanish: 'Lead AI Researcher en Bemyvega',
+        english: 'Lead AI Researcher at Bemyvega'
+    },
+    'highlight-cyber': {
+        spanish: 'Ciberseguridad & Backend',
+        english: 'Cybersecurity & Backend'
+    },
+    'cyber-desc': {
+        spanish: 'Ingeniero Backend en Vodafone Innovation Campus',
+        english: 'Backend Engineer at Vodafone Innovation Campus'
+    },
+    'highlight-ai': {
+        spanish: 'Inteligencia Artificial',
+        english: 'Artificial Intelligence'
+    },
+    'ai-desc': {
+        spanish: 'Colaboración con IBM - Framework de Agentes LLM',
+        english: 'Collaboration with IBM - LLM Agents Framework'
+    },
+    'highlight-iot': {
+        spanish: 'Investigador IA',
+        english: 'AI Researcher'
+    },
+    'research-desc': {
+        spanish: 'Investigación en tecnologías emergentes',
+        english: 'Research in emerging technologies'
     },
     
     // Declaración personal

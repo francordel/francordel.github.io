@@ -167,13 +167,24 @@ const { currentLanguage } = Astro.props;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(25px);
     border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        0 12px 40px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.dock-nav:hover .dock-backdrop {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 
+        0 16px 50px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .dock-items {
@@ -193,13 +204,13 @@ const { currentLanguage } = Astro.props;
     width: 70px;
     height: 70px;
     border-radius: 16px;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     text-decoration: none;
     color: var(--text-color);
     position: relative;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     cursor: pointer;
     overflow: hidden;
     min-width: 70px;
@@ -207,13 +218,127 @@ const { currentLanguage } = Astro.props;
     z-index: 11;
 }
 
+.dock-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(79, 70, 229, 0.8) 0%, 
+        rgba(6, 182, 212, 0.8) 50%, 
+        rgba(16, 185, 129, 0.8) 100%);
+    border-radius: 15px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: -1;
+}
+
+.dock-item::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.3) 0%, 
+        rgba(255, 255, 255, 0.1) 50%, 
+        transparent 100%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: -1;
+}
+
 .dock-item:hover {
     transform: scale(1.2) translateY(-8px);
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.18),
+        0 12px 24px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.dock-item:hover::after {
+    width: 100px;
+    height: 100px;
+    opacity: 0.6;
+}
+
+/* Active/Selected State with Liquid Fill */
+.dock-item.active-link {
+    background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.3);
     box-shadow: 
-        0 16px 40px rgba(0, 0, 0, 0.15),
-        0 8px 16px rgba(0, 0, 0, 0.1);
+        0 12px 30px rgba(79, 70, 229, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.dock-item.active-link::before {
+    opacity: 1;
+    transform: scale(1);
+    animation: liquidFill 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.dock-item.active-link::after {
+    width: 120px;
+    height: 120px;
+    opacity: 0.3;
+    animation: rippleEffect 1s ease-out;
+}
+
+.dock-item.active-link .dock-icon {
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.dock-item.active-link .dock-label {
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+    font-weight: 700;
+}
+
+/* Liquid Fill Animation */
+@keyframes liquidFill {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-180deg);
+        border-radius: 50%;
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.2) rotate(-90deg);
+        border-radius: 30%;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        border-radius: 15px;
+    }
+}
+
+/* Ripple Effect Animation */
+@keyframes rippleEffect {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.8;
+    }
+    50% {
+        width: 80px;
+        height: 80px;
+        opacity: 0.4;
+    }
+    100% {
+        width: 120px;
+        height: 120px;
+        opacity: 0;
+    }
 }
 
 .dock-label {

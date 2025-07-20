@@ -5,25 +5,20 @@ import Spain from "../svg/Spain.astro";
 import UK from "../svg/UK.astro";
 ---
 
-<div class="language-switch">
-    <div class="languages" id="language-container" style={{ display: 'flex' }}>
-        <div class="icon-text" id="spanish-select" data-language="spanish">
-            <Spain/> <span id="spanish-text">Español</span>
+<div class="language-toggle">
+    <div class="toggle-container">
+        <div class="toggle-background"></div>
+        <div class="toggle-options">
+            <div class="toggle-option" id="spanish-option" data-language="spanish">
+                <span class="option-flag"><Spain/></span>
+                <span class="option-text">ES</span>
+            </div>
+            <div class="toggle-option" id="english-option" data-language="english">
+                <span class="option-flag"><UK/></span>
+                <span class="option-text">EN</span>
+            </div>
         </div>
-        <div class="separator"></div>
-        <div class="icon-text" id="english-select" data-language="english">
-            <UK/> <span id="english-text">English</span>
-        </div>
-    </div>
-
-    <div class="languages" id="language-container2" style={{ display: 'none' }}>
-        <div class="icon-text" id="english-select2" data-language="english">
-            <UK/> <span id="english-text">English</span>
-        </div>
-        <div class="separator"></div>
-        <div class="icon-text" id="spanish-select2" data-language="spanish">
-            <Spain/> <span id="spanish-text">Español</span>
-        </div>
+        <div class="toggle-slider" id="toggle-slider"></div>
     </div>
 </div>
 
@@ -33,14 +28,11 @@ import UK from "../svg/UK.astro";
         // Guardar el idioma en localStorage
         localStorage.setItem('language', language);
         
-        // Actualizar visibilidad de los contenedores de idioma
-        const container1 = document.getElementById('language-container');
-        const container2 = document.getElementById('language-container2');
+        // Actualizar el slider visual
+        updateToggleSlider(language);
         
-        if (container1 && container2) {
-            container1.style.display = language === 'spanish' ? 'flex' : 'none';
-            container2.style.display = language === 'english' ? 'flex' : 'none';
-        }
+        // Actualizar estado activo de las opciones
+        updateActiveOption(language);
         
         // Disparar evento personalizado para que los componentes se actualicen
         document.dispatchEvent(new CustomEvent('languageChanged', { 
@@ -48,98 +40,245 @@ import UK from "../svg/UK.astro";
         }));
     }
     
-    // Escuchar el clic en los selectores de idioma
-    document.querySelectorAll('[id^="spanish-select"], [id^="english-select"]').forEach(selector => {
-        selector.addEventListener('click', (event) => {
-            const target = event.currentTarget;
-            if (target instanceof HTMLElement) {
-                const language = target.getAttribute('data-language');
-                if (language) {
-                    setLanguage(language);
-                }
+    // Función para actualizar la posición del slider
+    function updateToggleSlider(language: string) {
+        const slider = document.getElementById('toggle-slider');
+        if (slider) {
+            if (language === 'spanish') {
+                slider.style.transform = 'translateX(0%)';
+            } else {
+                slider.style.transform = 'translateX(100%)';
             }
-        });
-    });
-    
-    // Escuchar el clic en el toggle para mostrar/ocultar opciones
-    const switchElement = document.querySelector('.language-switch');
-    if (switchElement) {
-        switchElement.addEventListener('click', function(event) {
-            // Solo activar el toggle si se hace clic en el switch pero no en las opciones de idioma
-            const target = event.target as HTMLElement;
-            if (target && !target.closest('[id^="spanish-select"], [id^="english-select"]')) {
-                const container1 = document.getElementById('language-container');
-                const container2 = document.getElementById('language-container2');
-                
-                if (container1 && container2) {
-                    if (container1.style.display === 'flex') {
-                        container1.style.display = 'none';
-                        container2.style.display = 'none';
-                    } else {
-                        // Mostrar el contenedor apropiado según el idioma actual
-                        const currentLanguage = localStorage.getItem('language') || 'spanish';
-                        container1.style.display = currentLanguage === 'spanish' ? 'flex' : 'none';
-                        container2.style.display = currentLanguage === 'english' ? 'flex' : 'none';
-                    }
-                }
-            }
-        });
+        }
     }
     
-    // Inicializar el switch con el idioma guardado
+    // Función para actualizar el estado activo de las opciones
+    function updateActiveOption(language: string) {
+        const spanishOption = document.getElementById('spanish-option');
+        const englishOption = document.getElementById('english-option');
+        
+        if (spanishOption && englishOption) {
+            spanishOption.classList.toggle('active', language === 'spanish');
+            englishOption.classList.toggle('active', language === 'english');
+        }
+    }
+    
+    // Escuchar el clic en las opciones de idioma
     document.addEventListener('DOMContentLoaded', () => {
+        const toggleOptions = document.querySelectorAll('.toggle-option');
+        
+        toggleOptions.forEach(option => {
+            option.addEventListener('click', (event) => {
+                const target = event.currentTarget;
+                if (target instanceof HTMLElement) {
+                    const language = target.getAttribute('data-language');
+                    if (language) {
+                        setLanguage(language);
+                    }
+                }
+            });
+        });
+        
+        // Inicializar con el idioma guardado
         const savedLanguage = localStorage.getItem('language') || 'spanish';
         setLanguage(savedLanguage);
     });
 </script>
 
 <style>
-.language-switch {
-    margin-left: 2.5rem;
-    border-top-left-radius: 15%;
-    border-top-right-radius: 15%;
-    background-color: var(--header-color);
-    padding: 10px;
-    width: 140px;
-    height: 75px;
-    z-index: 999;
-    bottom: -32px;
-    left: 0;
+/* Glassmorphism Language Toggle */
+.language-toggle {
     position: fixed;
-    transition: bottom 0.3s ease;
-    box-shadow: -1px -3px 8px var(--background-color-shadow);
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1001;
+    pointer-events: none;
 }
 
-.language-switch:hover {
-    bottom: 0px;
+.toggle-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    padding: 4px;
+    position: relative;
+    pointer-events: auto;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 120px;
+    height: 50px;
 }
 
-.languages {
+.toggle-container:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.toggle-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    pointer-events: none;
+}
+
+.toggle-options {
     display: flex;
-    flex-direction: column;
+    position: relative;
+    z-index: 2;
+    height: 100%;
+}
+
+.toggle-option {
+    flex: 1;
+    display: flex;
     align-items: center;
-}
-
-.icon-text {
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 46px;
     cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 3;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.toggle-option:hover {
+    color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.02);
+}
+
+.toggle-option.active {
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.option-flag {
     display: flex;
-    align-items: center; 
-    margin-bottom: 0.25rem;
-    margin-top: 0.25rem;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
 }
 
-.separator {
-    border: 1px solid #292828;
-    width: 100%;
+.option-flag svg {
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.icon-text span {
-    margin-left: 10px;
+.option-text {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
+.toggle-slider {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    height: calc(100% - 8px);
+    background: linear-gradient(135deg, 
+        rgba(79, 70, 229, 0.8) 0%, 
+        rgba(6, 182, 212, 0.8) 50%, 
+        rgba(16, 185, 129, 0.8) 100%);
+    border-radius: 42px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1;
+    box-shadow: 
+        0 4px 12px rgba(79, 70, 229, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.toggle-slider::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    border-radius: 42px;
+    animation: sliderShimmer 2s ease-in-out infinite;
+}
+
+@keyframes sliderShimmer {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .language-switch{
-        margin-left: 1.5rem;
+    .language-toggle {
+        bottom: 1rem;
+        right: 1rem;
     }
+    
+    .toggle-container {
+        width: 100px;
+        height: 42px;
+    }
+    
+    .option-flag svg {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .option-text {
+        font-size: 10px;
+    }
+    
+    .toggle-option {
+        gap: 4px;
+        padding: 6px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .language-toggle {
+        bottom: 0.5rem;
+        right: 0.5rem;
+    }
+    
+    .toggle-container {
+        width: 90px;
+        height: 38px;
+    }
+    
+    .option-flag svg {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .option-text {
+        font-size: 9px;
+    }
+    
+    .toggle-option {
+        gap: 3px;
+        padding: 4px 6px;
+    }
+}
+
+/* Animation for better visual feedback */
+.toggle-option:active {
+    transform: scale(0.98);
+}
+
+.toggle-container:active .toggle-slider {
+    transform: scale(0.95);
 }
 </style>

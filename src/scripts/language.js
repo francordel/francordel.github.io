@@ -13,12 +13,16 @@ const translations = {
         spanish: 'Pasión por la tecnología, compromiso con la excelencia.',
         english: 'Passion for technology, commitment to excellence.'
     },
+    'tagline': {
+        spanish: 'Agentes LLMs para Ciberseguridad y Desarrollo End to End',
+        english: 'LLM Agents for Cybersecurity and End-to-End Development'
+    },
     'cv-text': {
         spanish: 'Currículum',
         english: 'Resume'
     },
-    
-    // Navegación - Header
+
+    // Navegación Header
     'nav-home': {
         spanish: 'Inicio',
         english: 'Home'
@@ -47,6 +51,7 @@ const translations = {
         spanish: 'Contacto',
         english: 'Contact'
     },
+
     
     // Sección About Me
     'about-title': {
@@ -106,8 +111,8 @@ const translations = {
     
     // Habilidades
     'skills-title': {
-        spanish: 'Habilidades',
-        english: 'Skills' 
+        spanish: 'Stack Tecnológico',
+        english: 'Tech Stack' 
     },
     'skill-1': {
         spanish: 'MLOPs, Git y Agile',
@@ -160,6 +165,10 @@ const translations = {
     },
     
     // Footer
+    'footer-subtitle': {
+        spanish: 'Ingeniero de Software & Investigador IA',
+        english: 'Software Engineer & AI Researcher'
+    },
     'footer-text': {
         spanish: '© 2025 Fran Cortés Delgado - Todos los derechos reservados.',
         english: '© 2025 Fran Cortés Delgado- All rights reserved.'

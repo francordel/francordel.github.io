@@ -31,7 +31,6 @@ const { currentLanguage } = Astro.props;
                 <div class="hero-section">
                     <div class="hero-content">
                         <div class="profile-avatar">
-                            <span class="avatar-emoji">👨🏽‍💻</span>
                             <div class="avatar-glow"></div>
                         </div>
                         <div class="hero-text">
@@ -183,51 +182,71 @@ const { currentLanguage } = Astro.props;
                     </div>
                 </div>
 
-                <!-- Skills Section -->
-                <div class="skills-section">
+                <!-- Terminal Skills Section -->
+                <div class="terminal-section">
                     <h2 class="section-header" data-i18n="skills-title">
-                        {currentLanguage === 'spanish' ? 'Habilidades Esenciales' : 'Essential Skills'}
+                        {currentLanguage === 'spanish' ? 'Stack Tecnológico' : 'Tech Stack'}
                     </h2>
-                    <div class="skills-container">
-                        <div class="skill-item">
-                            <div class="skill-icon-wrapper">
-                                <Proactivity />
+                    <div class="terminal-container">
+                        <div class="terminal-header">
+                            <div class="terminal-buttons">
+                                <span class="terminal-button close"></span>
+                                <span class="terminal-button minimize"></span>
+                                <span class="terminal-button maximize"></span>
                             </div>
-                            <span class="skill-label" data-i18n="skill-1">
-                                {currentLanguage === 'spanish' ? 'Proactividad' : 'Proactivity'}
-                            </span>
+                            <div class="terminal-title">fran@developer:~$</div>
                         </div>
-                        <div class="skill-item">
-                            <div class="skill-icon-wrapper">
-                                <TeamWork />
+                        <div class="terminal-body">
+                            <div class="terminal-line">
+                                <span class="prompt">fran@developer:~$</span>
+                                <span class="command">cat tech_stack.txt</span>
                             </div>
-                            <span class="skill-label" data-i18n="skill-2">
-                                {currentLanguage === 'spanish' ? 'Trabajo en Equipo' : 'Team Work'}
-                            </span>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon-wrapper">
-                                <Learning />
+                            <div class="terminal-output">
+                                <div class="tech-category">
+                                    <span class="category-title"># AI & Machine Learning</span>
+                                    <div class="tech-tags">
+                                        <span class="tech-tag python">Python</span>
+                                        <span class="tech-tag">TensorFlow</span>
+                                        <span class="tech-tag">PyTorch</span>
+                                        <span class="tech-tag">LangChain</span>
+                                        <span class="tech-tag">Hugging Face</span>
+                                    </div>
+                                </div>
+                                <div class="tech-category">
+                                    <span class="category-title"># Backend Development</span>
+                                    <div class="tech-tags">
+                                        <span class="tech-tag java">Java</span>
+                                        <span class="tech-tag">Spring Boot</span>
+                                        <span class="tech-tag">MongoDB</span>
+                                        <span class="tech-tag">Apache Kafka</span>
+                                        <span class="tech-tag">REST APIs</span>
+                                    </div>
+                                </div>
+                                <div class="tech-category">
+                                    <span class="category-title"># DevOps & Tools</span>
+                                    <div class="tech-tags">
+                                        <span class="tech-tag">Docker</span>
+                                        <span class="tech-tag">Git</span>
+                                        <span class="tech-tag">Linux</span>
+                                        <span class="tech-tag">AWS</span>
+                                        <span class="tech-tag">MLOps</span>
+                                    </div>
+                                </div>
+                                <div class="tech-category">
+                                    <span class="category-title"># Frontend & Mobile</span>
+                                    <div class="tech-tags">
+                                        <span class="tech-tag">JavaScript</span>
+                                        <span class="tech-tag">Astro</span>
+                                        <span class="tech-tag">React</span>
+                                        <span class="tech-tag">Flutter</span>
+                                        <span class="tech-tag">HTML/CSS</span>
+                                    </div>
+                                </div>
                             </div>
-                            <span class="skill-label" data-i18n="skill-3">
-                                {currentLanguage === 'spanish' ? 'Aprendizaje' : 'Learning'}
-                            </span>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon-wrapper">
-                                <Comunication />
+                            <div class="terminal-line">
+                                <span class="prompt">fran@developer:~$</span>
+                                <span class="cursor">|</span>
                             </div>
-                            <span class="skill-label" data-i18n="skill-4">
-                                {currentLanguage === 'spanish' ? 'Comunicación' : 'Communication'}
-                            </span>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-icon-wrapper">
-                                <Adaptability />
-                            </div>
-                            <span class="skill-label" data-i18n="skill-5">
-                                {currentLanguage === 'spanish' ? 'Adaptabilidad' : 'Adaptability'}
-                            </span>
                         </div>
                     </div>
                 </div>
@@ -312,17 +331,17 @@ const { currentLanguage } = Astro.props;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 120px;
-        height: 120px;
-        margin-bottom: 1rem;
+        width: 60px;
+        height: 60px;
+        margin-bottom: 0.5rem;
     }
 
     .avatar-glow {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 140px;
-        height: 140px;
+        width: 80px;
+        height: 80px;
         background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
         border-radius: 50%;
         transform: translate(-50%, -50%);
@@ -607,62 +626,158 @@ const { currentLanguage } = Astro.props;
     .icon-sm { display: none; }
     .icon-lg { display: inline; }
 
-    /* Skills Section */
-    .skills-section {
+    /* Terminal Skills Section */
+    .terminal-section {
         width: 100%;
-        max-width: 700px;
+        max-width: 900px;
     }
 
-    .skills-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1.5rem;
+    .terminal-container {
+        background: #1a1a1a;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        border: 1px solid #333;
         margin-top: 2rem;
     }
 
-    .skill-item {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(5px);
-        border-radius: 16px;
-        padding: 1.5rem;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        transition: all 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-        min-width: 120px;
-        position: relative;
-    }
-
-    .skill-item:hover {
-        transform: translateY(-5px);
-        background: rgba(255, 255, 255, 0.15);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    .skill-icon-wrapper {
+    .terminal-header {
+        background: #2d2d2d;
+        padding: 12px 16px;
         display: flex;
         align-items: center;
-        justify-content: center;
-        width: 60px;
-        height: 60px;
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.1);
-        transition: all 0.3s ease;
+        gap: 12px;
+        border-bottom: 1px solid #444;
     }
 
-    .skill-item:hover .skill-icon-wrapper {
-        transform: scale(1.1);
-        background: rgba(255, 255, 255, 0.2);
+    .terminal-buttons {
+        display: flex;
+        gap: 6px;
     }
 
-    .skill-label {
-        font-size: 0.9rem;
-        font-weight: 500;
+    .terminal-button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: block;
+    }
+
+    .terminal-button.close {
+        background: #ff5f57;
+    }
+
+    .terminal-button.minimize {
+        background: #ffbd2e;
+    }
+
+    .terminal-button.maximize {
+        background: #28ca42;
+    }
+
+    .terminal-title {
+        font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+        font-size: 13px;
+        color: #888;
+        flex: 1;
         text-align: center;
-        color: white;
+    }
+
+    .terminal-body {
+        padding: 20px;
+        font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+        font-size: 14px;
+        line-height: 1.6;
+        color: #e0e0e0;
+        background: #1a1a1a;
+        min-height: 300px;
+    }
+
+    .terminal-line {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+
+    .prompt {
+        color: #4CAF50;
+        font-weight: bold;
+    }
+
+    .command {
+        color: #2196F3;
+    }
+
+    .terminal-output {
+        margin: 16px 0;
+        padding-left: 0;
+    }
+
+    .tech-category {
+        margin-bottom: 20px;
+    }
+
+    .category-title {
+        color: #888;
+        font-style: italic;
+        display: block;
+        margin-bottom: 8px;
+        font-size: 13px;
+    }
+
+    .tech-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-left: 16px;
+    }
+
+    .tech-tag {
+        background: rgba(76, 175, 80, 0.1);
+        color: #4CAF50;
+        padding: 4px 12px;
+        border-radius: 16px;
+        font-size: 12px;
+        border: 1px solid rgba(76, 175, 80, 0.3);
+        transition: all 0.3s ease;
+        cursor: default;
+    }
+
+    .tech-tag:hover {
+        background: rgba(76, 175, 80, 0.2);
+        border-color: rgba(76, 175, 80, 0.5);
+        transform: scale(1.05);
+    }
+
+    .tech-tag.python {
+        background: rgba(255, 193, 7, 0.1);
+        color: #FFC107;
+        border-color: rgba(255, 193, 7, 0.3);
+    }
+
+    .tech-tag.python:hover {
+        background: rgba(255, 193, 7, 0.2);
+        border-color: rgba(255, 193, 7, 0.5);
+    }
+
+    .tech-tag.java {
+        background: rgba(255, 87, 34, 0.1);
+        color: #FF5722;
+        border-color: rgba(255, 87, 34, 0.3);
+    }
+
+    .tech-tag.java:hover {
+        background: rgba(255, 87, 34, 0.2);
+        border-color: rgba(255, 87, 34, 0.5);
+    }
+
+    .cursor {
+        color: #4CAF50;
+        animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
     }
 
     /* Wave elements */
@@ -752,22 +867,27 @@ const { currentLanguage } = Astro.props;
             grid-template-columns: 1fr;
         }
 
-        .skills-container {
-            gap: 1rem;
+        .terminal-container {
+            margin-top: 1.5rem;
         }
 
-        .skill-item {
-            min-width: 100px;
-            padding: 1rem;
+        .terminal-body {
+            padding: 16px;
+            font-size: 13px;
+            min-height: 250px;
         }
 
-        .skill-icon-wrapper {
-            width: 50px;
-            height: 50px;
+        .tech-tags {
+            margin-left: 8px;
+        }
+
+        .tech-tag {
+            font-size: 11px;
+            padding: 3px 8px;
         }
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 480px) {
         .about-container {
             padding: 0 2%;
         }
@@ -830,22 +950,27 @@ const { currentLanguage } = Astro.props;
             height: 20px;
         }
 
-        .skills-container {
-            gap: 0.8rem;
+        .terminal-body {
+            padding: 12px;
+            font-size: 12px;
+            min-height: 200px;
         }
 
-        .skill-item {
-            min-width: 80px;
-            padding: 0.8rem;
+        .terminal-header {
+            padding: 8px 12px;
         }
 
-        .skill-icon-wrapper {
-            width: 40px;
-            height: 40px;
+        .terminal-title {
+            font-size: 11px;
         }
 
-        .skill-label {
-            font-size: 0.8rem;
+        .tech-tags {
+            margin-left: 4px;
+        }
+
+        .tech-tag {
+            font-size: 10px;
+            padding: 2px 6px;
         }
 
         .icon-lg { display: none; }

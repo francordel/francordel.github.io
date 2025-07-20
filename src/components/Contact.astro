@@ -3,127 +3,580 @@ const { currentLanguage } = Astro.props;
 ---
 
 <section id="contact" class="contact">
-    <div>
-        <h1 class="section-title text-center" id="contact-title" data-i18n="contact-title">
-            {currentLanguage === "spanish" ? "Contacto" : "Contact"}
-        </h1>
-        <p class="section-text" id="contact-text" data-i18n="contact-text">
-            {currentLanguage === 'spanish' 
-                ? 'No tengas miedo al exito, tirame al DM'
-                : 'Do not be afraid of me, throw me a DM'}
-        </p>
-        <div class="contact-container">
-            <div class="buttons-container">
-                <button class="button">
-                    <a href="https://www.linkedin.com/in/francisco-jose-cortes-delgado/" target="_blank" class="no-link-style">
-                        <svg viewBox="55.005 23.8289 333.061 333.0491" width="80" height="80" xmlns="http://www.w3.org/2000/svg">
-                            <path id="Path_2520" data-name="Path 2520" d="M 338.789 307.609 L 289.44 307.609 L 289.44 230.326 C 289.44 211.898 289.111 188.174 263.773 188.174 C 238.07 188.174 234.138 208.253 234.138 228.985 L 234.138 307.604 L 184.788 307.604 L 184.788 148.679 L 232.164 148.679 L 232.164 170.398 L 232.827 170.398 C 242.491 153.881 260.452 144.017 279.57 144.726 C 329.587 144.726 338.809 177.626 338.809 220.426 L 338.789 307.609 Z M 129.106 126.955 C 107.063 126.96 93.281 103.098 104.298 84.006 C 115.319 64.909 142.877 64.909 153.904 83.996 C 156.418 88.35 157.739 93.29 157.739 98.312 C 157.744 114.13 144.923 126.955 129.106 126.955 M 153.781 307.609 L 104.38 307.609 L 104.38 148.679 L 153.781 148.679 L 153.781 307.609 Z M 363.391 23.851 L 79.582 23.851 C 66.17 23.702 55.169 34.446 55.005 47.858 L 55.005 332.844 C 55.164 346.266 66.165 357.02 79.582 356.876 L 363.391 356.876 C 376.839 357.046 387.881 346.292 388.066 332.844 L 388.066 47.837 C 387.876 34.4 376.834 23.656 363.391 23.831" fill="#0b65c2"></path>
-                        </svg>
-                    </a>
-                </button>
-                <div class="email-container">
-                    <button class="button">
-                        <a href="mailto:fran.j.cordel@gmail.com" class="no-link-style">
-                            <svg width="80" height="80" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM19.6 8.25L12.53 12.67C12.21 12.87 11.79 12.87 11.47 12.67L4.4 8.25C4.15 8.09 4 7.82 4 7.53C4 6.86 4.73 6.46 5.3 6.81L12 11L18.7 6.81C19.27 6.46 20 6.86 20 7.53C20 7.82 19.85 8.09 19.6 8.25Z" fill="#EA4335"/>
-                            </svg>
-                        </a>
-                    </button>
-                    <span class="email-text">fran.j.cordel@gmail.com</span>
+    <div class="chat-container">
+        <!-- Chat Header -->
+        <div class="chat-header">
+            <div class="chat-avatar">
+                <span class="avatar-emoji">👨🏽‍💻</span>
+                <span class="status-indicator"></span>
+            </div>
+            <div class="chat-info">
+                <h3 class="chat-name">Francisco Cortés</h3>
+                <p class="chat-status" data-i18n="chat-status">
+                    {currentLanguage === 'spanish' ? 'Activo ahora' : 'Active now'}
+                </p>
+            </div>
+            <div class="chat-actions">
+                <button class="action-btn" title="Call">📞</button>
+                <button class="action-btn" title="Video">📹</button>
+            </div>
+        </div>
+
+        <!-- Chat Messages -->
+        <div class="chat-messages">
+            <div class="message received">
+                <div class="message-content">
+                    <p data-i18n="chat-greeting">
+                        {currentLanguage === 'spanish' 
+                            ? '¡Hola! 👋 Gracias por visitar mi portfolio'
+                            : 'Hello! 👋 Thanks for visiting my portfolio'}
+                    </p>
+                    <span class="message-time">
+                        {currentLanguage === 'spanish' ? 'Ahora' : 'Now'}
+                    </span>
                 </div>
             </div>
+            
+            <div class="message received">
+                <div class="message-content">
+                    <p data-i18n="chat-question">
+                        {currentLanguage === 'spanish' 
+                            ? '¿Te interesa colaborar en algún proyecto? ¡Me encantaría escuchar tus ideas!'
+                            : 'Interested in collaborating on a project? I\'d love to hear your ideas!'}
+                    </p>
+                    <span class="message-time">
+                        {currentLanguage === 'spanish' ? 'Ahora' : 'Now'}
+                    </span>
+                </div>
+            </div>
+
+            <div class="typing-indicator">
+                <div class="typing-content">
+                    <div class="typing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Options -->
+        <div class="contact-options">
+            <a href="mailto:fran.j.cordel@gmail.com" class="contact-option email">
+                <div class="option-icon">✉️</div>
+                <div class="option-content">
+                    <span class="option-title" data-i18n="email-title">
+                        {currentLanguage === 'spanish' ? 'Enviar Email' : 'Send Email'}
+                    </span>
+                    <span class="option-subtitle">fran.j.cordel@gmail.com</span>
+                </div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/francisco-jose-cortes-delgado/" target="_blank" class="contact-option linkedin">
+                <div class="option-icon">💼</div>
+                <div class="option-content">
+                    <span class="option-title" data-i18n="linkedin-title">
+                        {currentLanguage === 'spanish' ? 'Conectar en LinkedIn' : 'Connect on LinkedIn'}
+                    </span>
+                    <span class="option-subtitle">
+                        {currentLanguage === 'spanish' ? 'Red profesional' : 'Professional network'}
+                    </span>
+                </div>
+            </a>
+
+            <a href="https://github.com/francordel" target="_blank" class="contact-option github">
+                <div class="option-icon">👨‍💻</div>
+                <div class="option-content">
+                    <span class="option-title" data-i18n="github-title">
+                        {currentLanguage === 'spanish' ? 'Ver en GitHub' : 'Check out GitHub'}
+                    </span>
+                    <span class="option-subtitle">
+                        {currentLanguage === 'spanish' ? 'Código y proyectos' : 'Code & projects'}
+                    </span>
+                </div>
+            </a>
         </div>
     </div>
 </section>
 
 <script>
-    // Actualizar cuando cambie el idioma
+    // Chat interface interactions
+    document.addEventListener('DOMContentLoaded', () => {
+        // Animate messages on load
+        const messages = document.querySelectorAll('.message');
+        messages.forEach((message, index) => {
+            message.style.opacity = '0';
+            message.style.transform = 'translateX(-20px)';
+            
+            setTimeout(() => {
+                message.style.transition = 'all 0.5s ease-out';
+                message.style.opacity = '1';
+                message.style.transform = 'translateX(0)';
+            }, index * 500 + 300);
+        });
+        
+        // Show typing indicator after messages
+        const typingIndicator = document.querySelector('.typing-indicator');
+        if (typingIndicator) {
+            typingIndicator.style.opacity = '0';
+            setTimeout(() => {
+                typingIndicator.style.transition = 'opacity 0.5s ease';
+                typingIndicator.style.opacity = '1';
+            }, messages.length * 500 + 800);
+        }
+        
+        // Animate contact options
+        const contactOptions = document.querySelectorAll('.contact-option');
+        contactOptions.forEach((option, index) => {
+            option.style.opacity = '0';
+            option.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                option.style.transition = 'all 0.4s ease-out';
+                option.style.opacity = '1';
+                option.style.transform = 'translateY(0)';
+            }, messages.length * 500 + 1200 + (index * 100));
+        });
+        
+        // Add click effects to action buttons
+        const actionBtns = document.querySelectorAll('.action-btn');
+        actionBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                btn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    btn.style.transform = 'scale(1.05)';
+                }, 100);
+                setTimeout(() => {
+                    btn.style.transform = 'scale(1)';
+                }, 200);
+            });
+        });
+        
+        // Add ripple effect to contact options
+        contactOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(0, 0, 0, 0.1)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.left = e.offsetX + 'px';
+                ripple.style.top = e.offsetY + 'px';
+                ripple.style.width = ripple.style.height = '20px';
+                ripple.style.marginLeft = ripple.style.marginTop = '-10px';
+                
+                option.style.position = 'relative';
+                option.appendChild(ripple);
+                
+                setTimeout(() => {
+                    if (ripple.parentNode) {
+                        ripple.parentNode.removeChild(ripple);
+                    }
+                }, 600);
+            });
+        });
+    });
+    
+    // Update when language changes
     document.addEventListener('languageChanged', (event) => {
-        // El sistema central de traducciones se encargará de actualizar los textos
         if (event instanceof CustomEvent && event.detail && event.detail.language) {
-            // No necesitamos hacer nada más aquí, las traducciones se manejan automáticamente
+            // Language change handled by central translation system
         }
     });
+    
+    // Add ripple animation to CSS
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
 </script>
 
 <style>
-    .section-text {
-        font-size: 1.25rem;
-        text-align: center;
-        margin-bottom: 2rem;
-        padding: 20px 300px;
+/* Chat Interface Styles */
+.contact {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-container {
+    background: white;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation: slideIn 0.6s ease-out;
+}
+
+/* Chat Header */
+.chat-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+}
+
+.chat-avatar {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.status-indicator {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    background: #4CAF50;
+    border-radius: 50%;
+    border: 2px solid white;
+    animation: pulse 2s infinite;
+}
+
+.chat-info {
+    flex: 1;
+}
+
+.chat-name {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.chat-status {
+    margin: 2px 0 0 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.chat-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+/* Chat Messages */
+.chat-messages {
+    padding: 20px;
+    background: #f8f9fa;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message {
+    display: flex;
+    animation: messageSlide 0.5s ease-out;
+}
+
+.message.received {
+    justify-content: flex-start;
+}
+
+.message-content {
+    max-width: 80%;
+    background: white;
+    padding: 12px 16px;
+    border-radius: 18px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.message.received .message-content {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-bottom-left-radius: 6px;
+}
+
+.message-content p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.message-time {
+    font-size: 11px;
+    opacity: 0.7;
+    margin-top: 4px;
+    display: block;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+    display: flex;
+    justify-content: flex-start;
+    animation: fadeIn 1s ease-in-out infinite alternate;
+}
+
+.typing-content {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 18px;
+    border-bottom-left-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.typing-dots {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.typing-dots span {
+    width: 8px;
+    height: 8px;
+    background: #ccc;
+    border-radius: 50%;
+    animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Contact Options */
+.contact-options {
+    padding: 20px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-option {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.contact-option:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.contact-option.email:hover {
+    border-left-color: #EA4335;
+}
+
+.contact-option.linkedin:hover {
+    border-left-color: #0A66C2;
+}
+
+.contact-option.github:hover {
+    border-left-color: #333;
+}
+
+.option-icon {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+}
+
+.option-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.option-title {
+    font-weight: 600;
+    font-size: 16px;
+    color: #333;
+}
+
+.option-subtitle {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
-
-    .contact-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 1rem;
-        margin-bottom: 5rem;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
-    .buttons-container {
-        display: flex;
-        gap: 2rem;
-        justify-content: center;
-        align-items: flex-start;
+@keyframes messageSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
     }
-
-    .email-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
+}
 
-    .email-text {
-        font-size: 0.75rem;
-        color: var(--text-color);
-        opacity: 0.7;
-        letter-spacing: 0.5px;
+@keyframes fadeIn {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes typing {
+    0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.4;
     }
-
-    .button {
-        background-color: #ffffff;
-        border: none;
-        border-radius: 50%;
-        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
-        animation: sway 2s infinite alternate;
-        width: 100px;
-        height: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        perspective: 500px;
-        transition: transform 0.5s, box-shadow 0.5s;
+    30% {
+        transform: translateY(-10px);
+        opacity: 1;
     }
+}
 
-    .button:hover {
-        transform: scale(1.05) rotate(-360deg) translateY(-1em);
-        box-shadow: 0 0 20px 0 rgba(29, 161, 242, 0.5);
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact {
+        padding: 2rem 1rem;
     }
-
-    @media (max-width: 768px) {
-        .section-title {
-            margin: 1.5rem 0;
-        }
-
-        .section-text {
-            font-size: 0.85rem;
-            padding: 0 20px;
-        }
-
-        .button {
-            width: 80px;
-            height: 80px;
-        }
-
-        .buttons-container {
-            gap: 1rem;
-        }
-
-        .email-text {
-            font-size: 0.65rem;
-        }
+    
+    .chat-container {
+        max-width: 100%;
+        margin: 0;
     }
+    
+    .chat-header {
+        padding: 15px;
+    }
+    
+    .chat-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .chat-name {
+        font-size: 16px;
+    }
+    
+    .chat-status {
+        font-size: 12px;
+    }
+    
+    .action-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    .chat-messages {
+        padding: 15px;
+        min-height: 150px;
+    }
+    
+    .message-content {
+        max-width: 90%;
+    }
+    
+    .message-content p {
+        font-size: 13px;
+    }
+    
+    .contact-options {
+        padding: 15px;
+    }
+    
+    .contact-option {
+        padding: 12px;
+    }
+    
+    .option-icon {
+        font-size: 20px;
+        width: 35px;
+        height: 35px;
+    }
+    
+    .option-title {
+        font-size: 14px;
+    }
+    
+    .option-subtitle {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact {
+        padding: 1rem 0.5rem;
+    }
+    
+    .chat-header {
+        padding: 12px;
+        gap: 10px;
+    }
+    
+    .chat-messages {
+        padding: 12px;
+    }
+    
+    .contact-options {
+        padding: 12px;
+        gap: 8px;
+    }
+}
 </style>

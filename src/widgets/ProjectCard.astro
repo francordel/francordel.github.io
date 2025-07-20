@@ -257,6 +257,7 @@ const technologyComponents = {
         margin: 0;
         line-height: 1.2;
         flex: 1;
+        word-break: break-word;
     }
 
     .project-tech {
@@ -437,6 +438,11 @@ const technologyComponents = {
     }
 
     @media (max-width: 480px) {
+        .project-title {
+            display: block;
+            white-space: pre-line;
+            text-align: left;
+        }
         .project-image {
             height: 180px;
         }

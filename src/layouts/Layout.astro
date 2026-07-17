@@ -38,14 +38,16 @@ const { title } = Astro.props;
 		<script src="../scripts/base.js"></script>
 		<script src="../scripts/language.js"></script>
 		<script is:inline>
-			document.addEventListener("DOMContentLoaded", () => {
-				const cvLink = document.getElementById("cv-download");
-				if (cvLink) {
-					cvLink.addEventListener("click", () => {
-						gtag('event', 'cv_descargado', {
-							event_category: 'descarga',
-							event_label: 'CV_FranCortes'
-						});
+			document.addEventListener("click", (e) => {
+				const link = e.target.closest && e.target.closest(".cv-download-link");
+				if (link) {
+					const labels = {
+						researcher: 'CV_FranCortes_Researcher',
+						'social-media': 'CV_FranCortes_SocialMedia'
+					};
+					gtag('event', 'cv_descargado', {
+						event_category: 'descarga',
+						event_label: labels[link.dataset.cvVariant] || 'CV_FranCortes'
 					});
 				}
 			});

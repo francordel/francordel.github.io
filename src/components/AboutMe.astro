@@ -2,6 +2,7 @@
 import LinkedIn from '../svg/LinkedIn.astro';
 import GitHub from '../svg/GitHub.astro';
 import CV from '../svg/CV.astro';
+import CVMenu from './CVMenu.astro';
 import LinkedIn_Small from '../svg/LinkedIn_Small.astro';
 import GitHub_Small from '../svg/GitHub_Small.astro';
 import CV_Small from '../svg/CV_Small.astro';
@@ -57,81 +58,6 @@ const { currentLanguage } = Astro.props;
                     </div>
                 </div>
 
-                <!-- Expertise Grid -->
-                <div class="expertise-section">
-                    <h2 class="section-header" data-i18n="expertise-title">
-                        {currentLanguage === 'spanish' ? 'Áreas de Especialización' : 'Areas of Expertise'}
-                    </h2>
-                    <div class="expertise-grid">
-                        <div class="expertise-card primary">
-                            <div class="card-icon">🎓</div>
-                            <div class="card-content">
-                                <h3 class="card-title" data-i18n="highlight-education">
-                                    {currentLanguage === 'spanish' ? 'Ing. Informático' : 'Computer Engineer'}
-                                </h3>
-                                <p class="card-description" data-i18n="education-desc">
-                                    {currentLanguage === 'spanish' ? 'Sólida base en ingeniería de software' : 'Strong foundation in software engineering'}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="expertise-card secondary">
-                            <div class="card-icon">🤖</div>
-                            <div class="card-content">
-                                <h3 class="card-title" data-i18n="highlight-ai">
-                                    {currentLanguage === 'spanish' ? 'Inteligencia Artificial' : 'Artificial Intelligence'}
-                                </h3>
-                                <p class="card-description" data-i18n="ai-desc">
-                                    {currentLanguage === 'spanish' ? 'Machine Learning y Deep Learning' : 'Machine Learning & Deep Learning'}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="expertise-card tertiary">
-                            <div class="card-icon">🔎</div>
-                            <div class="card-content">
-                                <h3 class="card-title" data-i18n="highlight-iot">
-                                    {currentLanguage === 'spanish' ? 'Investigador IA' : 'AI Researcher'}
-                                </h3>
-                                <p class="card-description" data-i18n="research-desc">
-                                    {currentLanguage === 'spanish' ? 'Investigación en tecnologías emergentes' : 'Research in emerging technologies'}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="expertise-card quaternary">
-                            <div class="card-icon">🔐</div>
-                            <div class="card-content">
-                                <h3 class="card-title" data-i18n="highlight-cyber">
-                                    {currentLanguage === 'spanish' ? 'Ciberseguridad' : 'Cybersecurity'}
-                                </h3>
-                                <p class="card-description" data-i18n="cyber-desc">
-                                    {currentLanguage === 'spanish' ? 'Seguridad y protección de datos' : 'Security & data protection'}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="expertise-card quinary">
-                            <div class="card-icon">💻</div>
-                            <div class="card-content">
-                                <h3 class="card-title" data-i18n="highlight-web">
-                                    {currentLanguage === 'spanish' ? 'Desarrollo Web Full-Stack' : 'Full-Stack Web Dev'}
-                                </h3>
-                                <p class="card-description" data-i18n="web-desc">
-                                    {currentLanguage === 'spanish' ? 'Frontend y Backend modernos' : 'Modern frontend & backend'}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="expertise-card senary">
-                            <div class="card-icon">📱</div>
-                            <div class="card-content">
-                                <h3 class="card-title" data-i18n="highlight-mobile">
-                                    {currentLanguage === 'spanish' ? 'Desarrollo Móvil' : 'Mobile Development'}
-                                </h3>
-                                <p class="card-description" data-i18n="mobile-desc">
-                                    {currentLanguage === 'spanish' ? 'Apps multiplataforma' : 'Cross-platform apps'}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Connect Section -->
                 <div class="connect-section">
                     <h2 class="section-header" data-i18n="profile-contact">
@@ -164,7 +90,7 @@ const { currentLanguage } = Astro.props;
                             </div>
                             <div class="connect-arrow">→</div>
                         </a>
-                        <a id="cv-download" href="/CV_FranCortes.pdf" target="_blank" rel="noopener noreferrer" class="connect-card resume">
+                        <CVMenu currentLanguage={currentLanguage} triggerClass="connect-card resume" listAlign="left" block>
                             <div class="connect-icon">
                                 <span class="icon-lg"><CV /></span>
                                 <span class="icon-sm"><CV_Small /></span>
@@ -178,7 +104,7 @@ const { currentLanguage } = Astro.props;
                                 </p>
                             </div>
                             <div class="connect-arrow">→</div>
-                        </a>
+                        </CVMenu>
                     </div>
                 </div>
 

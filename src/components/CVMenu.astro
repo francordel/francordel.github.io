@@ -1,0 +1,161 @@
+---
+const { currentLanguage, triggerClass = "", listAlign = "center", block = false } = Astro.props;
+---
+
+<div class={`cv-menu${block ? ' cv-menu-block' : ''}`} data-cv-menu>
+  <button type="button" class={`cv-menu-trigger ${triggerClass}`} aria-haspopup="true" aria-expanded="false">
+    <slot />
+  </button>
+  <div class={`cv-menu-list align-${listAlign}`} role="menu">
+    <a
+      href="/CV_FranCortes.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      role="menuitem"
+      class="cv-download-link"
+      data-cv-variant="engineer"
+    >
+      {currentLanguage === 'spanish' ? 'CV Ingeniero' : 'Engineer CV'}
+    </a>
+    <a
+      href="/CV_FranCortes_Researcher.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      role="menuitem"
+      class="cv-download-link"
+      data-cv-variant="researcher"
+    >
+      {currentLanguage === 'spanish' ? 'CV Investigador' : 'Researcher CV'}
+    </a>
+    <a
+      href="/CV_FranCortes_SocialMedia.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      role="menuitem"
+      class="cv-download-link"
+      data-cv-variant="social-media"
+    >
+      {currentLanguage === 'spanish' ? 'CV Ponente / Redes' : 'Speaker / Media CV'}
+    </a>
+  </div>
+</div>
+
+<script>
+  function initCvMenus() {
+    document.querySelectorAll('[data-cv-menu]').forEach((menu) => {
+      if (menu.hasAttribute('data-cv-menu-ready')) return;
+      menu.setAttribute('data-cv-menu-ready', 'true');
+
+      const trigger = menu.querySelector('.cv-menu-trigger');
+      if (!trigger) return;
+
+      const close = () => {
+        menu.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      };
+
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isOpen = menu.classList.toggle('open');
+        trigger.setAttribute('aria-expanded', String(isOpen));
+        document.querySelectorAll('[data-cv-menu].open').forEach((other) => {
+          if (other !== menu) other.classList.remove('open');
+        });
+      });
+
+      menu.querySelectorAll('.cv-download-link').forEach((link) => {
+        link.addEventListener('click', close);
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      document.querySelectorAll('[data-cv-menu].open').forEach((menu) => {
+        if (!menu.contains(e.target)) {
+          menu.classList.remove('open');
+          menu.querySelector('.cv-menu-trigger')?.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('[data-cv-menu].open').forEach((menu) => {
+          menu.classList.remove('open');
+          menu.querySelector('.cv-menu-trigger')?.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initCvMenus);
+  initCvMenus();
+</script>
+
+<style>
+  .cv-menu {
+    position: relative;
+    display: inline-block;
+  }
+  .cv-menu-block {
+    display: block;
+    width: 100%;
+  }
+  .cv-menu-trigger {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-align: inherit;
+    width: 100%;
+    height: 100%;
+  }
+  .cv-menu-list {
+    position: absolute;
+    top: calc(100% + 8px);
+    background: var(--card-color, #1a1a1a);
+    border: 1px solid var(--special-border-color, #929292);
+    border-radius: 12px;
+    padding: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 170px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(4px);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+    z-index: 50;
+  }
+  .cv-menu-list.align-center { left: 50%; transform: translate(-50%, 4px); }
+  .cv-menu-list.align-left { left: 0; }
+  .cv-menu-list.align-right { right: 0; }
+
+  .cv-menu.open .cv-menu-list {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .cv-menu.open .cv-menu-list.align-center {
+    transform: translate(-50%, 0);
+  }
+
+  .cv-menu-list a {
+    padding: 0.55rem 0.85rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    text-decoration: none;
+    color: var(--text-color, #fff);
+    opacity: 0.85;
+    transition: background 0.15s ease, opacity 0.15s ease;
+  }
+  .cv-menu-list a:hover {
+    background: var(--blue-titles-color, #7970e0);
+    opacity: 1;
+  }
+</style>

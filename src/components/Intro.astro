@@ -2,6 +2,7 @@
 import LinkedIn from '../svg/LinkedIn.astro';
 import GitHub from '../svg/GitHub.astro';
 import CV from '../svg/CV.astro';
+import CVMenu from './CVMenu.astro';
 import IBM from '../svg/IBM.astro';
 import Vodafone from '../svg/Vodafone.astro';
 import UMU from '../svg/UMU.astro';
@@ -51,7 +52,7 @@ const name = "Fran Cortés";
             <span>GitHub</span>
           </div>
         </a>
-        <a id="cv-download" href="/CV_FranCortes.pdf" target="_blank" rel="noopener noreferrer">
+        <CVMenu currentLanguage={currentLanguage}>
           <div class="icon-text">
             <span class="icon-lg"><CV /></span>
             <span class="icon-sm"><CV_Small /></span>
@@ -59,7 +60,7 @@ const name = "Fran Cortés";
               {currentLanguage === 'spanish' ? 'Currículum' : 'Resume'}
             </span>
           </div>
-        </a>
+        </CVMenu>
         
       </div>
     </div>
@@ -245,9 +246,9 @@ img {
   transition: opacity 0.3s ease;
 }
 
-.row a, .row_experience a { transition: transform 0.3s ease; }
-.row a:hover, .row_experience a:hover       { transform: scale(1.05); }
-.row a:hover span, .row_experience a:hover span  { opacity: 1; }
+.row a, .row_experience a, .row :global(.cv-menu-trigger) { transition: transform 0.3s ease; }
+.row a:hover, .row_experience a:hover, .row :global(.cv-menu-trigger:hover)       { transform: scale(1.05); }
+.row a:hover span, .row_experience a:hover span, .row :global(.cv-menu-trigger:hover span)  { opacity: 1; }
 
 /* ================================ */
 

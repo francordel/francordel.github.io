@@ -1,6 +1,7 @@
 ---
 import GitHub from '../svg/GitHubBig.astro';
 import CV from '../svg/CVBig.astro';
+import CVMenu from './CVMenu.astro';
 const { currentLanguage } = Astro.props;
 ---
 
@@ -22,12 +23,12 @@ const { currentLanguage } = Astro.props;
                                 <GitHub/>
                                 <span>GitHub</span>
                             </a>
-                            <a id="cv-download" href="/CV_FranCortes.pdf" target="_blank" rel="noopener noreferrer" class="footer-link">
+                            <CVMenu currentLanguage={currentLanguage} triggerClass="footer-link">
                                 <CV/>
                                 <span data-i18n="cv-text">
                                     {currentLanguage === 'spanish' ? 'Currículum' : 'Resume'}
                                 </span>
-                            </a>
+                            </CVMenu>
                         </div>
                     </div>
                 </div>

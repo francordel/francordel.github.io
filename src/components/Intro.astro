@@ -52,7 +52,7 @@ const name = "Fran Cortés";
             <span>GitHub</span>
           </div>
         </a>
-        <CVMenu currentLanguage={currentLanguage}>
+        <CVMenu currentLanguage={currentLanguage} direction="up">
           <div class="icon-text">
             <span class="icon-lg"><CV /></span>
             <span class="icon-sm"><CV_Small /></span>
@@ -128,6 +128,7 @@ const name = "Fran Cortés";
 .intro-mask-section {
   position: relative;
   overflow: hidden;   /* ✨ lo importante */
+  z-index: 2;   /* evita que #about-me (desplazado -150px) tape los clics de esta sección */
 }
 
 html,body{

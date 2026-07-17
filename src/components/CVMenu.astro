@@ -1,12 +1,12 @@
 ---
-const { currentLanguage, triggerClass = "", listAlign = "center", block = false } = Astro.props;
+const { currentLanguage, triggerClass = "", listAlign = "center", block = false, direction = "down" } = Astro.props;
 ---
 
 <div class={`cv-menu${block ? ' cv-menu-block' : ''}`} data-cv-menu>
   <button type="button" class={`cv-menu-trigger ${triggerClass}`} aria-haspopup="true" aria-expanded="false">
     <slot />
   </button>
-  <div class={`cv-menu-list align-${listAlign}`} role="menu">
+  <div class={`cv-menu-list align-${listAlign} direction-${direction}`} role="menu">
     <a
       href="/CV_FranCortes.pdf"
       target="_blank"
@@ -127,6 +127,7 @@ const { currentLanguage, triggerClass = "", listAlign = "center", block = false 
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transform: translateY(4px);
     transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
     z-index: 50;
@@ -135,9 +136,17 @@ const { currentLanguage, triggerClass = "", listAlign = "center", block = false 
   .cv-menu-list.align-left { left: 0; }
   .cv-menu-list.align-right { right: 0; }
 
+  .cv-menu-list.direction-up {
+    top: auto;
+    bottom: calc(100% + 8px);
+    transform: translateY(-4px);
+  }
+  .cv-menu-list.direction-up.align-center { transform: translate(-50%, -4px); }
+
   .cv-menu.open .cv-menu-list {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
     transform: translateY(0);
   }
   .cv-menu.open .cv-menu-list.align-center {

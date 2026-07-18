@@ -41,51 +41,106 @@ const { currentLanguage, triggerClass = "", listAlign = "center", block = false,
 </div>
 
 <script>
+  const cvTriggers = new Map();
+
   function initCvMenus() {
     document.querySelectorAll('[data-cv-menu]').forEach((menu) => {
       if (menu.hasAttribute('data-cv-menu-ready')) return;
       menu.setAttribute('data-cv-menu-ready', 'true');
 
       const trigger = menu.querySelector('.cv-menu-trigger');
-      if (!trigger) return;
+      const list = menu.querySelector('.cv-menu-list');
+      if (!trigger || !list) return;
+
+      // Reparent the dropdown to <body> so it always escapes ancestor
+      // overflow/scroll clipping (e.g. the mobile icon row uses
+      // overflow-x: auto, which was silently clipping this menu on
+      // phones) and so `position: fixed` is always relative to the
+      // viewport, not some transformed ancestor.
+      document.body.appendChild(list);
+      cvTriggers.set(list, trigger);
+
+      const isUp = list.classList.contains('direction-up');
+      const isCenter = list.classList.contains('align-center');
+      const isRight = list.classList.contains('align-right');
+
+      const position = () => {
+        const rect = trigger.getBoundingClientRect();
+        const listRect = list.getBoundingClientRect();
+        const margin = 8;
+        let left;
+        if (isCenter) {
+          left = rect.left + rect.width / 2 - listRect.width / 2;
+        } else if (isRight) {
+          left = rect.right - listRect.width;
+        } else {
+          left = rect.left;
+        }
+        left = Math.max(margin, Math.min(left, window.innerWidth - listRect.width - margin));
+
+        if (isUp) {
+          list.style.top = 'auto';
+          list.style.bottom = `${window.innerHeight - rect.top + 8}px`;
+        } else {
+          list.style.bottom = 'auto';
+          list.style.top = `${rect.bottom + 8}px`;
+        }
+        list.style.left = `${left}px`;
+      };
 
       const close = () => {
-        menu.classList.remove('open');
+        list.classList.remove('open');
         trigger.setAttribute('aria-expanded', 'false');
       };
 
       trigger.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const isOpen = menu.classList.toggle('open');
-        trigger.setAttribute('aria-expanded', String(isOpen));
-        document.querySelectorAll('[data-cv-menu].open').forEach((other) => {
-          if (other !== menu) other.classList.remove('open');
+        document.querySelectorAll('.cv-menu-list.open').forEach((other) => {
+          if (other !== list) {
+            other.classList.remove('open');
+            cvTriggers.get(other)?.setAttribute('aria-expanded', 'false');
+          }
         });
+        const isOpen = list.classList.toggle('open');
+        trigger.setAttribute('aria-expanded', String(isOpen));
+        if (isOpen) position();
       });
 
-      menu.querySelectorAll('.cv-download-link').forEach((link) => {
+      list.querySelectorAll('.cv-download-link').forEach((link) => {
         link.addEventListener('click', close);
+      });
+
+      window.addEventListener('resize', () => {
+        if (list.classList.contains('open')) position();
       });
     });
 
     document.addEventListener('click', (e) => {
-      document.querySelectorAll('[data-cv-menu].open').forEach((menu) => {
-        if (!menu.contains(e.target)) {
-          menu.classList.remove('open');
-          menu.querySelector('.cv-menu-trigger')?.setAttribute('aria-expanded', 'false');
+      document.querySelectorAll('.cv-menu-list.open').forEach((list) => {
+        const trigger = cvTriggers.get(list);
+        if (!list.contains(e.target) && !(trigger && trigger.contains(e.target))) {
+          list.classList.remove('open');
+          trigger?.setAttribute('aria-expanded', 'false');
         }
       });
     });
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        document.querySelectorAll('[data-cv-menu].open').forEach((menu) => {
-          menu.classList.remove('open');
-          menu.querySelector('.cv-menu-trigger')?.setAttribute('aria-expanded', 'false');
+        document.querySelectorAll('.cv-menu-list.open').forEach((list) => {
+          list.classList.remove('open');
+          cvTriggers.get(list)?.setAttribute('aria-expanded', 'false');
         });
       }
     });
+
+    document.addEventListener('scroll', () => {
+      document.querySelectorAll('.cv-menu-list.open').forEach((list) => {
+        list.classList.remove('open');
+        cvTriggers.get(list)?.setAttribute('aria-expanded', 'false');
+      });
+    }, true);
   }
 
   document.addEventListener('DOMContentLoaded', initCvMenus);
@@ -114,8 +169,10 @@ const { currentLanguage, triggerClass = "", listAlign = "center", block = false,
     height: 100%;
   }
   .cv-menu-list {
-    position: absolute;
-    top: calc(100% + 8px);
+    /* top/bottom/left are set inline by JS once reparented to <body>,
+       so this always escapes ancestor overflow clipping (e.g. the
+       mobile icon row) and stays viewport-relative. */
+    position: fixed;
     background: var(--card-color, #1a1a1a);
     border: 1px solid var(--special-border-color, #929292);
     border-radius: 12px;
@@ -130,27 +187,17 @@ const { currentLanguage, triggerClass = "", listAlign = "center", block = false,
     pointer-events: none;
     transform: translateY(4px);
     transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
-    z-index: 50;
+    z-index: 1001;
   }
-  .cv-menu-list.align-center { left: 50%; transform: translate(-50%, 4px); }
-  .cv-menu-list.align-left { left: 0; }
-  .cv-menu-list.align-right { right: 0; }
-
   .cv-menu-list.direction-up {
-    top: auto;
-    bottom: calc(100% + 8px);
     transform: translateY(-4px);
   }
-  .cv-menu-list.direction-up.align-center { transform: translate(-50%, -4px); }
 
-  .cv-menu.open .cv-menu-list {
+  .cv-menu-list.open {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
     transform: translateY(0);
-  }
-  .cv-menu.open .cv-menu-list.align-center {
-    transform: translate(-50%, 0);
   }
 
   .cv-menu-list a {
